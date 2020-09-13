@@ -1,0 +1,123 @@
+---
+title: "203 Assignment 1"
+output: html_document
+---
+
+## Intro
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rootSolve)
+```
+
+## Part II Surface Energy Balance - Solving for surface temperature 
+
+```{r functions}
+
+# the following functions are needed to solve the surface energy balance and calculate latent heat 
+# run this chunk to load the functions into R 
+
+# temperature is represented as x (in celsius)
+seb <- function(x){ (
+    -Q_av + 
+    eps*sigma*(x+273.15)^4 + 
+    k_H*(x-T_a) + 
+    k_E*(RH_s*0.61078*exp(17.27*x/(x+237.3)) -      
+           RH*0.61078*exp(17.27*T_a/(T_a+237.3))))
+}
+
+# Tetens eq. to solve for saturated vapor pressure (used in LE eq.)
+sat_vp <- function(T){
+  e <- 0.61078*exp(17.27*T/(T+237.3))
+  return(e)
+  }
+
+```
+
+Run the code below to assign the variables and calculate the surface temperature. 
+
+Note: For setting the variables, we've set the initial values as the same for the building roof example in your assignment. You'll need to copy and paste this chunk for the other surfaces. 
+
+**How can we highlight which variables they need to change?** 
+
+```{r vars}
+T_a = 28 # ambient atm temp in Celsius 
+alpha = 0.15 # albedo of the surface
+eps = 0.95 # emissivity of the surface
+sigma = 5.6704*10^-8 #W/m^2/K^4 stefan-boltzmann constant
+k_H = 21 # Sensible heat conductivity [J/deg-C]
+k_E = 100 # [J/kPa] Latent heat conductivity (only present if surface is wet)
+
+RH = 0.4 # Relative humidity of atmosphere, [0-1]
+RH_s = 1 # Relative humidity of the surface (assume 1 is wet/irrigated, 0 is dry)
+
+K_inc = 800 # W/m^2, incoming shortwave radiation (this changes during night)
+L_inc = 0.9 * sigma * (T_a+273.15)^4  # W/m^2, incoming longwave radiation
+Q_av = 0.9 * (K_inc*(1-alpha) + L_inc) # W/m^2 
+
+## Run the below code to solve for surface temperature
+# temp_s is surface temperature
+range = c(0,100)
+temp_s = uniroot.all(seb, range) 
+temp_s
+```
+
+
+With the given inputs from step 1, the surface temperature is `r format(round(temp_s, 2), nsmall = 2)` degrees C. 
+
+**change this part to show different temps for the different surfaces, or add table**
+
+Maybe copy and paste all of the above? to get the different values of the temperature rather than going back and re-writing variables, making it all one long doc 
+
+
+
+### Part 2, number 4:
+
+- first solve for water amount for typical midday during August (from 10am to 2pm)
+```{r water}
+
+# surface temp from the last chunk (make sure all variables are set to the irrigated lawn scenario) 
+Ts = temp_s 
+Ts = 26.8
+# Latent Heat 
+LE = k_E*(sat_vp(Ts)*RH_s - sat_vp(T_a)*RH) # W/m^2
+
+# Latent energy of vaporization
+cp = 2200*(10^3) # J/kg
+
+# solve for amount of water 
+mass_flux = LE/cp # kg/s/m^2
+
+# over 4 hours 
+water = mass_flux*3600*4 
+water # kg / m^2
+
+```
+
+### Part 2, number 4b:
+
+- then convert evaporated water to gallons needed for entire lawn on August day
+```{r gal}
+sqft = 10.76 #sqft/sqm
+lawn = 3000 #sqft
+gal = 3.79 #kg
+
+gallons = water/0.7/sqft*lawn/gal
+
+gallons
+```
+
+## Notes from meeting 9/9/20
+
+- Create ggplots, where all they change is x or y 
+- Plot maps - shapefile of neighborhoods with variables 
+- use code to make calculations, not a coding assignment 
+- think about ways to make it transferrable - are there similar patterns in other cities? 
+- part 1 will be in class 
+- parts 2 and 3 in Rmarkdown
+- add table of values  
+- data will be uploaded by Friday (email Cascade w questions)
+- add background readings in the intro 
+- write intro to provide info on whatever we decide is in the rest of the doc 
+- don't make equations a priority
