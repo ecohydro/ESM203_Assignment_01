@@ -1,15 +1,16 @@
 ﻿column,description
-median_inc,Median household income 
-crime_percapita ,"The rate of violent crimes per 10,000 people varies widely among the more than 200 neighborhoods and cities policed by the LAPD and L.A. County Sheriff's Department. This map and list show the rates from Dec. 30, 2019 to June 28, 2020, the most recent six months for which complete data is available for all areas patrolled by the departments. Violent crime is defined as homicide, rape, aggravated assault and robbery. Bear in mind that in areas with relatively low populations, a small number of crimes can generate a large per capita rate. For that reason, the chart below contains both per capita statistics and gross crime counts."
-crime_tot,gross crime (see crime_percapita)
-diversity_index,"The diversity index measures the probability that any two residents, chosen at random, would be of different ethnicities. If all residents are of the same ethnic group it's zero. If half are from one group and half from another it's .50."
-pct_asian ,Percentage of asian residents in a neighborhood 
-pct_black,Percentage of black residents in a neighborhood 
-pct_latino,Percentage of latino residents in a neighborhood 
-pct_white,Percentage of white residents in a neighborhood 
-pct_single_parent,Percentage of single-parent households in a neighborhood
-homeowner,Percentage of homeowners (as opposed to renters) in a neighborhood 
-popdensity,Population density (people per square mile) 
+NEIGHBORHOOD,LA Timesneighbhorhood name
+POPULATION PER SQMI,Population density (people per square mile) 
+SINGLE PARENTS,Percentage of single-parent households in a neighborhood
+ASIAN POPULATION,Percentage of asian residents in a neighborhood 
+LATINO POPULATION,Percentage of latino residents in a neighborhood 
+WHITE POPULATION,Percentage of white residents in a neighborhood 
+CRIME PER CAPITA,"The rate of violent crimes per 10,000 people varies widely among the more than 200 neighborhoods and cities policed by the LAPD and L.A. County Sheriff's Department. This map and list show the rates from Dec. 30, 2019 to June 28, 2020, the most recent six months for which complete data is available for all areas patrolled by the departments. Violent crime is defined as homicide, rape, aggravated assault and robbery. Bear in mind that in areas with relatively low populations, a small number of crimes can generate a large per capita rate. For that reason, the chart below contains both per capita statistics and gross crime counts."
+CRIME TOTAL,gross crime (see crime_percapita)
+DIVERSITY INDEX,"The diversity index measures the probability that any two residents, chosen at random, would be of different ethnicities. If all residents are of the same ethnic group it's zero. If half are from one group and half from another it's .50."
+MEDIAN INCOME,Median household income 
+HOMEOWNERS,Percentage of homeowners (as opposed to renters) in a neighborhood 
+BLACK POPULATION,Percentage of black residents in a neighborhood 
 ndvi_mean_summer,Mean NDVI calculated for each neighborhood derived from Landsat 8 OLI image (30m resolution) captured XXXXXX
 temp_mean_summer,Mean land surface temperature (LST) calculated for each neighborhood derived from Landsat 8 OLI image (100m resolution) captured XXXX
 ndvi_mean_spring,Mean NDVI calculated for each neighborhood derived from Landsat 8 OLI image (30m resolution) captured XXXXXX

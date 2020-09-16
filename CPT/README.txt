@@ -2,12 +2,13 @@ Files for ESM 203 Ass. 1
 Prepared by Cascade Tuholske Sep 2020, updated from 2018
 
 --- Dir Structure 
+- data/ESM203_F2020_SocioEcon.csv and shape file are all the socioeconomic csv files merged
 - data/la-county-regions-v6 are the shape files from http://maps.latimes.com/neighborhoods/
 - data/ESM203_F2020_Ass1.csv (and .shp) is the data produced for the 2020 assignment 
 - cpt_Makedata.jpyter .ipynb is used by CPT to make all the data for data/ESM203_F2020_Ass1.csv
 - data/socioeconomic is the LA times socioeconomic data manually made
 - data/landsat is the landsat data (not pushed to repo) pulled from USGS Earth Explorer 
--- data/columns is the names of the columns and descriptions of the final data
+- data/columns is the names of the columns and descriptions of the final data
 
 --- Notes
 - data/Bren203_F18_LA_Data.csv is the 2018 Data
