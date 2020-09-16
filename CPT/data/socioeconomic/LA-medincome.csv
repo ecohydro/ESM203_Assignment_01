@@ -1,0 +1,266 @@
+﻿RANK,NEIGHBORHOOD,MEDIAN INCOME
+1,Bel-Air,207938
+2,Hidden Hills,203199
+3,Rolling Hills,184777
+4,Beverly Crest,169282
+5,Pacific Palisades,168008
+6,Palos Verdes Estates,167344
+7,San Marino,158855
+8,La Cañada Flintridge,148996
+9,Rolling Hills Estates,145628
+10,Malibu,138215
+11,La Habra Heights,137034
+12,Manhattan Beach,136481
+13,Unincorporated Santa Monica Mountains,132997
+14,Rancho Palos Verdes,128321
+15,Westlake Village,126550
+16,Calabasas,126178
+17,West San Dimas,125984
+18,Bradbury,123773
+19,Stevenson Ranch,122833
+20,Porter Ranch,121428
+21,Topanga,120319
+22,Ladera Heights,117925
+23,Agoura Hills,117608
+24,Leona Valley,117526
+25,Brentwood,112927
+26,Cheviot Hills,111813
+27,Hermosa Beach,109509
+28,Castaic,108693
+29,Hollywood Hills West,108199
+30,Walnut,106893
+31,Hasley Canyon,106489
+32,Agua Dulce,106078
+33,Beverlywood,105253
+34,Northwest Palmdale,103013
+35,West Hills,103008
+36,Cerritos,98212
+37,Beverly Hills,96312
+38,Century City,95135
+39,North Whittier,93841
+40,Unincorporated Santa Susana Mountains,93825
+41,Castaic Canyons,93248
+42,San Pasqual,92917
+43,Ridge Route,92822
+44,Marina del Rey,92763
+45,Diamond Bar,92414
+46,Redondo Beach,92263
+47,Playa del Rey,91339
+48,Woodland Hills,89946
+49,Claremont,89804
+50,Santa Clarita,88987
+51,Sierra Madre,88008
+52,West Los Angeles,86403
+53,Ramona,86325
+54,Tujunga Canyons,85625
+55,Hancock Park,85277
+56,San Dimas,84953
+57,Chatsworth,84456
+58,Acton,83983
+59,El Segundo,83925
+60,Granada Hills,83911
+61,La Mirada,83514
+62,La Verne,83352
+63,Shadow Hills,82796
+64,La Crescenta-Montrose,82693
+65,Altadena,82676
+66,Glendora,81336
+67,Vernon,81279
+68,View Park-Windsor Hills,81214
+69,Desert View Highlands,80867
+70,Hacienda Heights,80762
+71,Lakewood,78764
+72,Green Valley,78712
+73,Encino,78529
+74,Quartz Hill,77498
+75,Westchester,77473
+76,Torrance,76866
+77,South Pasadena,76229
+78,Elizabeth Lake,75951
+79,Arcadia,75808
+80,Mission Hills,75675
+81,Studio City,75657
+82,Lake Hughes,74918
+83,East Pasadena,73690
+84,Tarzana,73195
+85,Toluca Lake,73111
+86,Angeles Crest,72841
+87,Rowland Heights,72638
+88,Rancho Dominguez,72097
+89,West Covina,71898
+90,Carthay,71398
+91,Culver City,70774
+92,Carson,70645
+93,Southeast Antelope Valley,70134
+94,Valinda,70037
+95,East La Mirada,69930
+96,Rancho Park,69724
+97,Sherman Oaks,69651
+98,Hollywood Hills,69277
+99,Santa Monica,69013
+100,Sunland,68720
+101,Westwood,68716
+102,Playa Vista,68597
+103,Duarte,68539
+104,Charter Oak,68092
+105,Val Verde,68073
+106,Lake View Terrace,67985
+107,Northridge,67906
+108,Venice,67647
+109,Mayflower Village,67592
+110,Eagle Rock,67253
+111,Whittier,66891
+112,West Carson,66805
+113,Citrus,66638
+114,Industry,66616
+115,Del Aire,66442
+116,Covina,66438
+117,Signal Hill,66283
+118,Vincent,66221
+119,Temple City,65965
+120,Fairfax,65938
+121,Sylmar,65783
+122,Arleta,65649
+123,South San Jose Hills,65527
+124,Lake Balboa,65336
+125,South San Gabriel,64827
+126,West Puente Valley,64809
+127,South Whittier,64670
+128,Avocado Heights,64544
+129,Burbank,64416
+130,East San Gabriel,64365
+131,Pico-Robertson,63356
+132,Palmdale,63317
+133,Beverly Grove,63039
+134,Pasadena,62825
+135,Mar Vista,62611
+136,Winnetka,62535
+137,Norwalk,62412
+138,Del Rey,62259
+139,Downey,61839
+140,Windsor Square,61767
+141,West Whittier-Los Nietos,61504
+141,Monrovia,61504
+143,Lopez/Kagel Canyons,61398
+144,Irwindale,60959
+145,Littlerock,60781
+146,Veterans Administration,60561
+147,Artesia,60538
+148,Santa Fe Springs,60445
+149,Lomita,59059
+150,Northwest Antelope Valley,58899
+151,Mid-Wilshire,58483
+152,Tujunga,58001
+153,Gramercy Park,57983
+154,Mount Washington,57725
+155,Sawtelle,57710
+156,San Pedro,57508
+157,Alondra Park,57177
+158,Glendale,57112
+159,San Gabriel,56687
+160,Pico Rivera,56683
+161,Baldwin Park,56585
+162,North El Monte,56577
+163,Unincorporated Catalina Island,56295
+164,Sun Village,56175
+165,Lancaster,56069
+166,La Puente,55902
+167,Montecito Heights,55901
+168,Valley Village,55470
+169,Harbor City,55454
+170,Monterey Park,55210
+171,Reseda,54771
+172,Silver Lake,54339
+173,Pomona,54242
+174,San Fernando,54068
+175,Atwater Village,53872
+176,Bellflower,53325
+177,Azusa,53299
+178,Alhambra,53224
+179,Avalon,53200
+180,Lawndale,53150
+181,Gardena,52897
+182,West Hollywood,52855
+183,Montebello,52623
+184,North Hills,52456
+185,Northeast Antelope Valley,52234
+186,Lake Los Angeles,52146
+187,Canoga Park,51601
+188,Sun Valley,51290
+189,Long Beach,50985
+190,Los Feliz,50793
+191,Palms,50684
+192,Glassell Park,50098
+193,Paramount,49815
+194,Rosemead,49387
+195,Pacoima,49066
+196,Elysian Valley,49013
+197,Athens,48824
+198,Walnut Park,48750
+199,Lynwood,48518
+200,South Gate,48312
+201,West Compton,48093
+202,Harbor Gateway,47849
+203,Larchmont,47780
+204,South El Monte,46912
+205,Hawaiian Gardens,46853
+206,Inglewood,46574
+207,Commerce,46245
+208,Valley Glen,46175
+209,Manchester Square,46093
+210,El Sereno,45866
+211,Leimert Park,45865
+212,Highland Park,45478
+213,Panorama City,44468
+214,East Compton,44439
+215,El Monte,44415
+216,Mid-City,43711
+217,Hawthorne,43602
+218,Compton,43157
+219,North Hollywood,42791
+220,Cypress Park,42615
+221,Bell Gardens,41532
+222,Maywood,41203
+223,Van Nuys,41134
+224,Wilmington,40627
+225,Bell,40556
+226,Hyde Park,39460
+227,Huntington Park,39185
+228,Cudahy,39048
+229,East Los Angeles,38621
+230,Willowbrook,38224
+231,West Adams,38209
+232,Baldwin Hills/Crenshaw,37948
+233,Lennox,37937
+234,Chesterfield Square,37737
+235,Echo Park,37708
+236,Harvard Park,37013
+237,Florence-Firestone,34408
+238,Exposition Park,33999
+239,Hollywood,33694
+240,Boyle Heights,33235
+241,Jefferson Park,32654
+242,Westmont,31572
+243,Central-Alameda,31559
+244,Arlington Heights,31421
+245,Green Meadows,31347
+246,Vermont Vista,31272
+247,Vermont-Slauson,31236
+248,Harvard Heights,31173
+249,Historic South-Central,30882
+250,Lincoln Heights,30579
+251,Koreatown,30558
+252,East Hollywood,29927
+253,Vermont Square,29904
+254,Broadway-Manchester,29897
+255,Adams-Normandie,29606
+256,South Park,29518
+257,Florence,29447
+258,Elysian Park,28263
+259,Vermont Knolls,27730
+260,Westlake,26757
+261,Pico-Union,26424
+262,Watts,25161
+263,Chinatown,22754
+264,University Park,18533
+265,Downtown,15003

@@ -1,0 +1,266 @@
+﻿RANK,NEIGHBORHOOD,HOMEOWNERS
+1,Hidden Hills,0.97
+2,La Habra Heights,0.94
+3,Porter Ranch,0.92
+4,San Marino,0.92
+5,Rolling Hills Estates,0.91
+6,Rolling Hills,0.91
+7,Palos Verdes Estates,0.91
+8,Leona Valley,0.90
+9,Hasley Canyon,0.90
+10,Beverly Crest,0.90
+11,La Cañada Flintridge,0.90
+12,Walnut,0.89
+13,Angeles Crest,0.88
+14,Northwest Palmdale,0.88
+15,Acton,0.88
+16,Castaic,0.88
+17,West Hills,0.87
+18,Agua Dulce,0.87
+19,West San Dimas,0.87
+20,Westlake Village,0.87
+21,Tujunga Canyons,0.87
+22,Rancho Dominguez,0.87
+23,Green Valley,0.86
+24,Castaic Canyons,0.86
+25,Bel-Air,0.86
+26,North Whittier,0.85
+27,Bradbury,0.84
+28,Agoura Hills,0.84
+29,Stevenson Ranch,0.84
+30,Cerritos,0.83
+31,Diamond Bar,0.83
+32,Pacific Palisades,0.83
+33,Southeast Antelope Valley,0.82
+34,La Mirada,0.82
+35,Rancho Palos Verdes,0.82
+36,Northwest Antelope Valley,0.81
+37,Desert View Highlands,0.81
+38,Arleta,0.80
+39,Calabasas,0.80
+40,Hacienda Heights,0.80
+41,Ridge Route,0.79
+42,South San Jose Hills,0.79
+43,Littlerock,0.79
+44,Mission Hills,0.78
+45,La Verne,0.78
+46,Carson,0.78
+47,Lake Los Angeles,0.78
+48,Shadow Hills,0.78
+49,Sun Village,0.78
+50,Valinda,0.78
+51,Quartz Hill,0.78
+52,Elizabeth Lake,0.77
+53,Lake Hughes,0.77
+54,West Puente Valley,0.77
+55,Ladera Heights,0.77
+56,Topanga,0.76
+57,Mayflower Village,0.76
+58,View Park-Windsor Hills,0.76
+59,Unincorporated Santa Monica Mountains,0.75
+60,West Carson,0.75
+61,Lake View Terrace,0.75
+62,Altadena,0.75
+63,Ramona,0.74
+64,Lopez/Kagel Canyons,0.74
+65,Northeast Antelope Valley,0.74
+66,Granada Hills,0.74
+67,San Dimas,0.74
+68,Glendora,0.74
+69,Santa Clarita,0.73
+70,Val Verde,0.73
+71,Avocado Heights,0.72
+72,Lakewood,0.72
+73,Malibu,0.72
+74,East Pasadena,0.71
+75,Chatsworth,0.71
+76,Duarte,0.71
+77,Palmdale,0.71
+78,Sylmar,0.71
+79,West Whittier-Los Nietos,0.71
+80,West Compton,0.71
+81,Gramercy Park,0.70
+82,Beverlywood,0.70
+83,Pico Rivera,0.70
+84,Irwindale,0.69
+85,Sunland,0.69
+86,Vincent,0.68
+87,Claremont,0.68
+88,South San Gabriel,0.67
+89,Rowland Heights,0.67
+90,West Covina,0.67
+91,Del Aire,0.66
+92,Lake Balboa,0.66
+93,Norwalk,0.66
+94,Manhattan Beach,0.65
+95,La Crescenta-Montrose,0.65
+96,East La Mirada,0.65
+97,South Whittier,0.65
+98,North El Monte,0.65
+99,Cheviot Hills,0.64
+100,Hollywood Hills West,0.64
+101,Woodland Hills,0.63
+102,Temple City,0.63
+103,Citrus,0.63
+104,Charter Oak,0.63
+105,Santa Fe Springs,0.63
+106,Sierra Madre,0.63
+107,Arcadia,0.62
+108,San Pasqual,0.62
+109,Unincorporated Santa Susana Mountains,0.62
+110,Encino,0.62
+111,Lancaster,0.61
+112,La Puente,0.61
+113,Baldwin Park,0.61
+114,Century City,0.60
+115,Covina,0.60
+116,Tarzana,0.59
+117,Whittier,0.58
+118,Pomona,0.57
+119,Compton,0.57
+120,Manchester Square,0.57
+121,Pacoima,0.57
+122,Artesia,0.57
+123,East Compton,0.56
+124,Eagle Rock,0.56
+125,Torrance,0.56
+126,Athens,0.56
+127,Tujunga,0.55
+128,Mount Washington,0.55
+129,Playa Vista,0.55
+130,Culver City,0.54
+131,Rancho Park,0.54
+132,East San Gabriel,0.54
+133,Monterey Park,0.54
+134,Sun Valley,0.54
+135,San Fernando,0.54
+136,Walnut Park,0.54
+137,Northridge,0.54
+138,Willowbrook,0.52
+139,Reseda,0.52
+140,Westchester,0.52
+141,Downey,0.52
+142,Winnetka,0.52
+143,Alondra Park,0.52
+144,Brentwood,0.52
+145,Harvard Park,0.51
+146,Montecito Heights,0.51
+147,Chesterfield Square,0.51
+148,Azusa,0.50
+149,South El Monte,0.50
+150,Redondo Beach,0.50
+151,North Hills,0.49
+152,West Los Angeles,0.49
+153,Rosemead,0.49
+154,Green Meadows,0.48
+155,El Sereno,0.48
+156,Monrovia,0.48
+157,Elysian Valley,0.48
+158,San Gabriel,0.48
+159,Montebello,0.48
+160,Commerce,0.47
+161,Gardena,0.47
+162,Hancock Park,0.47
+163,Lynwood,0.47
+164,Playa del Rey,0.47
+165,South Gate,0.47
+166,Hyde Park,0.47
+167,Lomita,0.47
+168,Signal Hill,0.46
+169,Pasadena,0.46
+170,Leimert Park,0.46
+171,Harbor City,0.46
+172,Hawaiian Gardens,0.45
+173,Del Rey,0.45
+174,South Pasadena,0.44
+175,Studio City,0.44
+176,San Pedro,0.44
+177,Glassell Park,0.44
+178,Burbank,0.44
+179,Hollywood Hills,0.44
+180,Beverly Hills,0.44
+181,Paramount,0.43
+182,Hermosa Beach,0.43
+183,El Segundo,0.42
+184,Cypress Park,0.42
+185,Long Beach,0.41
+186,Sherman Oaks,0.41
+187,El Monte,0.41
+188,Windsor Square,0.41
+189,Vermont Vista,0.40
+190,Atwater Village,0.40
+191,Harbor Gateway,0.40
+192,Bellflower,0.40
+193,Industry,0.40
+194,Mar Vista,0.39
+195,Alhambra,0.39
+196,Highland Park,0.39
+197,Vermont-Slauson,0.39
+198,Wilmington,0.39
+199,Glendale,0.38
+200,Toluca Lake,0.38
+201,Florence-Firestone,0.38
+202,West Adams,0.37
+203,Valley Glen,0.37
+204,Broadway-Manchester,0.37
+205,Vermont Square,0.37
+206,East Los Angeles,0.37
+207,Inglewood,0.36
+208,Canoga Park,0.36
+209,Panorama City,0.36
+210,Westwood,0.36
+211,Silver Lake,0.36
+212,Carthay,0.35
+213,Florence,0.35
+214,Lawndale,0.33
+215,Watts,0.33
+216,Westmont,0.32
+217,Valley Village,0.31
+218,Venice,0.31
+219,Mid-City,0.31
+220,Exposition Park,0.31
+221,Bell,0.31
+222,Baldwin Hills/Crenshaw,0.31
+223,Jefferson Park,0.31
+224,Santa Monica,0.30
+225,Central-Alameda,0.30
+226,Maywood,0.30
+227,Lennox,0.29
+228,Fairfax,0.29
+229,Vermont Knolls,0.28
+230,South Park,0.28
+231,Huntington Park,0.27
+232,Avalon,0.27
+233,Larchmont,0.27
+234,Pico-Robertson,0.27
+235,Van Nuys,0.26
+236,Hawthorne,0.26
+237,Beverly Grove,0.25
+238,North Hollywood,0.25
+239,Los Feliz,0.25
+240,Boyle Heights,0.24
+241,Lincoln Heights,0.24
+242,Echo Park,0.24
+243,Bell Gardens,0.24
+244,Mid-Wilshire,0.22
+245,West Hollywood,0.22
+246,Adams-Normandie,0.21
+247,Historic South-Central,0.20
+248,Sawtelle,0.20
+249,Arlington Heights,0.18
+250,Elysian Park,0.18
+251,Cudahy,0.17
+252,Vernon,0.16
+253,Harvard Heights,0.16
+254,Palms,0.13
+255,Pico-Union,0.10
+256,Chinatown,0.09
+257,East Hollywood,0.09
+258,Marina del Rey,0.08
+259,University Park,0.08
+260,Hollywood,0.08
+261,Koreatown,0.07
+262,Downtown,0.07
+263,Westlake,0.05
+264,Veterans Administration,0.00
+264,Unincorporated Catalina Island,0.00

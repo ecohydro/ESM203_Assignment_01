@@ -1,0 +1,266 @@
+﻿RANK,NEIGHBORHOOD,POPULATION PER SQMI
+1,Koreatown,42611.00
+2,Westlake,38214.00
+3,East Hollywood,31095.00
+4,Pico-Union,25352.00
+5,Maywood,23638.00
+6,Harvard Heights,23473.00
+7,Hollywood,22193.00
+8,Walnut Park,22028.00
+9,Palms,21870.00
+10,Adams-Normandie,21848.00
+11,South Park,21638.00
+12,Lennox,21557.00
+13,Arlington Heights,21423.00
+14,Huntington Park,20223.00
+15,University Park,20217.00
+16,Cudahy,19697.00
+17,Historic South-Central,19474.00
+18,West Hollywood,18924.00
+19,Central-Alameda,18760.00
+20,Vermont-Slauson,18577.00
+21,Vermont Knolls,18057.00
+22,Panorama City,18028.00
+23,Vermont Square,17798.00
+24,Bell Gardens,17762.00
+25,Larchmont,17747.00
+26,Pico-Robertson,17468.00
+27,Watts,17346.00
+28,Westmont,17066.00
+29,Echo Park,16868.00
+30,East Los Angeles,16863.00
+31,Highland Park,16835.00
+32,Exposition Park,16819.00
+33,Florence-Firestone,16805.00
+34,East Compton,16542.00
+35,Jefferson Park,16300.00
+36,Lawndale,16119.00
+37,Harvard Park,16072.00
+38,Florence,15661.00
+39,Hawaiian Gardens,15141.00
+40,Broadway-Manchester,15060.00
+41,Mid-City,15051.00
+42,Mid-Wilshire,14988.00
+43,West Adams,14686.00
+44,Bell,14357.00
+45,Lynwood,14264.00
+46,Boyle Heights,14229.00
+47,Vermont Vista,14154.00
+48,Hawthorne,13848.00
+49,South San Jose Hills,13646.00
+50,Los Feliz,13512.00
+51,Cypress Park,13478.00
+52,Sawtelle,13319.00
+53,North Hollywood,13264.00
+54,Westwood,13036.00
+55,Beverly Grove,12990.00
+56,South Gate,12945.00
+57,West Puente Valley,12855.00
+58,Green Meadows,12785.00
+59,Hyde Park,12700.00
+60,Hermosa Beach,12481.00
+61,Inglewood,12330.00
+62,Valley Glen,12325.00
+63,Mar Vista,12259.00
+64,Canoga Park,12240.00
+65,West Los Angeles,12061.00
+66,El Monte,11995.00
+67,Venice,11891.00
+68,Citrus,11827.00
+69,La Puente,11761.00
+70,Bellflower,11756.00
+71,Valley Village,11600.00
+72,Van Nuys,11542.00
+73,Manchester Square,11449.00
+74,Del Rey,11420.00
+75,Paramount,11395.00
+76,Alhambra,11275.00
+77,Silver Lake,11266.00
+78,Baldwin Park,11176.00
+79,Valinda,10748.00
+80,Lincoln Heights,10602.00
+81,Reseda,10600.00
+82,Norwalk,10572.00
+83,Chinatown,10568.00
+84,Pacoima,10510.00
+85,Baldwin Hills/Crenshaw,10446.00
+86,Lomita,10424.00
+87,Rosemead,10332.00
+88,South Whittier,10291.00
+89,Vincent,10163.00
+90,East San Gabriel,10157.00
+91,Redondo Beach,10129.00
+92,Fairfax,10122.00
+93,Artesia,10036.00
+94,Arleta,10034.00
+95,North Hills,10003.00
+96,West Whittier-Los Nietos,9899.00
+97,Gardena,9894.00
+98,Leimert Park,9880.00
+99,San Fernando,9856.00
+100,Winnetka,9826.00
+101,El Sereno,9826.00
+102,Santa Monica,9817.00
+103,Charter Oak,9816.00
+104,Carthay,9642.00
+105,Mayflower Village,9585.00
+106,Chesterfield Square,9571.00
+107,San Gabriel,9433.00
+108,Elysian Valley,9354.00
+109,West Carson,9219.00
+110,Compton,9199.00
+111,Del Aire,9132.00
+112,Harbor City,9127.00
+113,Willowbrook,9117.00
+114,Long Beach,8882.00
+115,Gramercy Park,8859.00
+116,North El Monte,8677.00
+117,Manhattan Beach,8573.00
+118,Downey,8566.00
+119,Glassell Park,8524.00
+120,East La Mirada,8506.00
+121,Atwater Village,8379.00
+122,Temple City,8366.00
+123,Lakewood,8348.00
+124,Windsor Square,8255.00
+125,Sun Valley,8048.00
+126,San Pasqual,8036.00
+127,Century City,7869.00
+128,Monterey Park,7823.00
+129,Lake Balboa,7754.00
+130,Harbor Gateway,7720.00
+131,Beverlywood,7654.00
+132,Eagle Rock,7644.00
+133,Alondra Park,7548.00
+134,Culver City,7475.00
+135,Montebello,7329.00
+136,Pico Rivera,7187.00
+137,Rancho Park,7169.00
+138,South El Monte,7150.00
+139,South Pasadena,7114.00
+140,Montecito Heights,6959.00
+141,Mount Washington,6878.00
+142,Athens,6829.00
+143,Torrance,6701.00
+144,Covina,6701.00
+145,Sherman Oaks,6687.00
+146,San Pedro,6640.00
+147,Pomona,6556.00
+148,West Covina,6509.00
+149,Hancock Park,6459.00
+150,Toluca Lake,6393.00
+151,Glendale,6368.00
+152,Northridge,6080.00
+153,View Park-Windsor Hills,6008.00
+154,La Mirada,5966.00
+155,Beverly Hills,5933.00
+156,Avocado Heights,5907.00
+157,Cerritos,5851.00
+158,Burbank,5785.00
+159,Mission Hills,5721.00
+160,South San Gabriel,5708.00
+161,Marina del Rey,5706.00
+162,Whittier,5688.00
+163,Wilmington,5636.00
+164,Sylmar,5579.00
+165,La Crescenta-Montrose,5401.00
+166,Studio City,5395.00
+167,Pasadena,5366.00
+168,Desert View Highlands,5160.00
+169,Altadena,4900.00
+170,Downtown,4770.00
+171,Arcadia,4749.00
+172,Carson,4676.00
+173,East Pasadena,4622.00
+174,West Hills,4551.00
+175,Cheviot Hills,4520.00
+176,Hacienda Heights,4503.00
+177,Azusa,4496.00
+178,Porter Ranch,4462.00
+179,Encino,4411.00
+180,Signal Hill,4171.00
+181,Woodland Hills,4040.00
+182,Tarzana,4038.00
+183,La Verne,3863.00
+184,Westchester,3839.00
+185,Sunland,3825.00
+186,Diamond Bar,3754.00
+187,Rowland Heights,3604.00
+188,Sierra Madre,3563.00
+189,Playa del Rey,3542.00
+190,San Marino,3428.00
+191,Granada Hills,3344.00
+192,Walnut,3329.00
+193,West Compton,3291.00
+194,Duarte,3212.00
+195,Rancho Palos Verdes,3084.00
+196,Castaic,3076.00
+197,Hollywood Hills,3063.00
+198,Hollywood Hills West,3048.00
+199,El Segundo,2925.00
+200,Palos Verdes Estates,2822.00
+201,Lake View Terrace,2790.00
+202,Stevenson Ranch,2765.00
+203,Santa Clarita,2745.00
+204,Tujunga,2649.00
+205,Monrovia,2643.00
+206,Val Verde,2588.00
+207,Glendora,2568.00
+208,Agoura Hills,2495.00
+209,Quartz Hill,2475.00
+210,La Cañada Flintridge,2369.00
+211,Chatsworth,2301.00
+212,San Dimas,2244.00
+213,Ladera Heights,2214.00
+214,Rolling Hills Estates,2185.00
+215,Claremont,2124.00
+216,Brentwood,2059.00
+217,Santa Fe Springs,2014.00
+218,Commerce,1912.00
+219,Playa Vista,1859.00
+220,Lake Los Angeles,1601.00
+221,Elysian Park,1538.00
+222,Westlake Village,1534.00
+223,Beverly Crest,1318.00
+224,Calabasas,1247.00
+225,Bel-Air,1207.00
+226,Lancaster,1180.00
+227,Avalon,1159.00
+228,Ramona,1122.00
+229,Hidden Hills,1100.00
+230,Pacific Palisades,1048.00
+231,Shadow Hills,1023.00
+232,La Habra Heights,979.00
+233,Rancho Dominguez,947.00
+234,West San Dimas,937.00
+235,Sun Village,917.00
+236,Rolling Hills,893.00
+237,Palmdale,874.00
+238,North Whittier,797.00
+239,Littlerock,766.00
+240,Veterans Administration,683.00
+241,Bradbury,658.00
+242,Malibu,629.00
+243,Northwest Palmdale,540.00
+244,Topanga,386.00
+245,Green Valley,290.00
+246,Elizabeth Lake,219.00
+247,Lopez/Kagel Canyons,195.00
+248,Acton,166.00
+249,Irwindale,154.00
+250,Hasley Canyon,136.00
+251,Unincorporated Santa Monica Mountains,100.00
+252,Agua Dulce,99.00
+253,Leona Valley,90.00
+254,Industry,82.00
+255,Lake Hughes,61.00
+256,Unincorporated Santa Susana Mountains,58.00
+257,Castaic Canyons,40.00
+258,Southeast Antelope Valley,27.00
+259,Vernon,18.00
+260,Northwest Antelope Valley,16.00
+261,Tujunga Canyons,11.00
+262,Northeast Antelope Valley,10.00
+263,Ridge Route,7.00
+264,Angeles Crest,3.00
+265,Unincorporated Catalina Island,2.00

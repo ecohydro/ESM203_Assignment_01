@@ -7,6 +7,7 @@ Prepared by Cascade Tuholske Sep 2020, updated from 2018
 - cpt_Makedata.jpyter .ipynb is used by CPT to make all the data for data/ESM203_F2020_Ass1.csv
 - data/socioeconomic is the LA times socioeconomic data manually made
 - data/landsat is the landsat data (not pushed to repo) pulled from USGS Earth Explorer 
+-- data/columns is the names of the columns and descriptions of the final data
 
 --- Notes
 - data/Bren203_F18_LA_Data.csv is the 2018 Data
