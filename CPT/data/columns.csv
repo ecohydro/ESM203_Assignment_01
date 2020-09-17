@@ -11,7 +11,7 @@ DIVERSITY INDEX,"The diversity index measures the probability that any two res
 MEDIAN INCOME,Median household income 
 HOMEOWNERS,Percentage of homeowners (as opposed to renters) in a neighborhood 
 BLACK POPULATION,Percentage of black residents in a neighborhood 
-ndvi_mean_summer,Mean NDVI calculated for each neighborhood derived from Landsat 8 OLI image (30m resolution) captured XXXXXX
-temp_mean_summer,Mean land surface temperature (LST) calculated for each neighborhood derived from Landsat 8 OLI image (100m resolution) captured XXXX
-ndvi_mean_spring,Mean NDVI calculated for each neighborhood derived from Landsat 8 OLI image (30m resolution) captured XXXXXX
-temp_mean_spring,Mean land surface temperature (LST) calculated for each neighborhood derived from Landsat 8 OLI image (100m resolution) captured XXXX
+NDVI_SPRING,Area-averaged  NDVI calculated for each neighborhood derived from Landsat 8 OLI image (30m resolution) captured 2020-04-14
+TEMP_SPRING,Area-averaged  brightness tempature calculated for each neighborhood derived from Landsat 8 OLI image (100m resolution) captured 2020-04-14
+NDVI_SUMMER,Area-averaged  NDVI calculated for each neighborhood derived from Landsat 8 OLI image (30m resolution) captured 2020-08-14
+TEMP_SUMMER,Area-averaged  brightness tempature calculated for each neighborhood derived from Landsat 8 OLI image (100m resolution) captured 2020-08-20
