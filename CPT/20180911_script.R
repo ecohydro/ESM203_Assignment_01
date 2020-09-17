@@ -50,7 +50,7 @@ K2_CONSTANT_BAND_10 = 1321.0789
 K1_CONSTANT_BAND_11 = 480.8883
 K2_CONSTANT_BAND_11 = 1201.1442
 
-#Calculate LST in Kelvin for Band 10 and Band 11
+#Calculate Brightness Temp in Kelvin for Band 10 and Band 11
 temp10_kelvin <- calc(toa_band10, fun=function(x){K2_CONSTANT_BAND_10/log(K1_CONSTANT_BAND_10/x + 1)})
 temp11_kelvin <- calc(toa_band11, fun=function(x){K2_CONSTANT_BAND_11/log(K1_CONSTANT_BAND_11/x + 1)})
 

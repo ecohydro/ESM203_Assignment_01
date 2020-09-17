@@ -1,5 +1,7 @@
 # Started by CPT
 
 CPT/data/landsat
+CPT/data/interim/*.tif
 .DS_Store
 */.DS_Store
+
