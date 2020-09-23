@@ -3,29 +3,91 @@ title: "203 Assignment 1"
 output: html_document
 ---
 
-## Intro
+## Introduction
+
+This assignment is going to use the principles of energy balance to examine how changing properties of urban environments alter the temperature of urban landscapes. In urban areas, the distribution of materials such as asphalt and concrete has been shown to lead to higher air temperatures compared to rural counterparts. This is known as the urban heat island (UHI) effect. High temperatures can be harmful to the health of residents, and in order to mitigate the UHI cities adopt strategies like increasing tree cover to increase shade and cooling, or increasing the reflectivity, also called albedo, with white paint. However, these strategies are not always evenly distributed throughout a city and may create environmental inequity. Read more about this phenomena [here](https://docs.google.com/document/d/1NUJATMo7KnmC3PpyFRdxo9HWH0F-zQxUDKiIW6pX7pY/edit#heading=h.z1slrwcvefnj).
+
+
+We've assembled a dataset that captures a snapshot of average midday temperatures in August, the amount of vegetation, and a host of social/economic data across each neighborhood in the county of Los Angeles. The temperature data is from the Landsat satellite’s surface thermal data and was acquired in the middle of August, 2018. The vegetation data is characterized by the Normalized Difference Vegetation Index (NDVI), and is taken from the same satellite and the same acquisition date. [NDVI](https://earthobservatory.nasa.gov/features/MeasuringVegetation/measuring_vegetation_2.php) is a measure of “greenness” and higher values of NDVI indicate a greater amount of green vegetation within each neighborhood. The neighborhood information is collated
+from the incredibly awesome Mapping LA project developed by the [LA Times](http://maps.latimes.com/neighborhoods), which is worth checking out.
+
+
+*Note*: For those of you new to southern CA, August is the height of the mediterranean dry
+season, and - in 2018 at least - it hasn’t rained much (if at all) since May. This means that the
+data on vegetation you are seeing must be associated with irrigated lawns, gardens, or parks
+and open spaces with numerous deeply-rooted trees.
+
+
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
 library(rootSolve)
+library(raster)
+library(rgdal)
 ```
 
-## Part II Surface Energy Balance - Solving for surface temperature 
+### Mapping Los Angeles County 
 
+In this assignment, we'll be exploring surface temperatures of different neighborhoods in Los Angeles County. To get a better idea of the spatial patterns within the county, check out the plots below, and make a few of your own. 
+
+```{r map, message = F, warning=F}
+# load shapefile - this contains map of neighborhoods
+losang <- shapefile("CPT/data/ESM203_F2020_Ass1.shp")
+
+# view spatial NDVI 
+spplot(losang, 'NDVI_SUMME', main="NDVI summer")
+
+## chose a different variable and plot it here (can check other variables by typing 'names(losang)' in the console)
+
+```
+
+We can also look at the data as a dataframe, which allows us to see if there are any correlations between variables. 
+
+```{r ndvi_plot, message=F}
+# load in data as a CSV 
+LA_nbhds <- read.csv("CPT/data/ESM203_F2020_Ass1.csv")
+
+LA_nbhds %>% 
+  dplyr::filter(NDVI_SUMMER > 0 & NDVI_SUMMER < 1) %>% 
+  ggplot() + geom_jitter(aes(x=NDVI_SUMMER, y=TEMP_SUMMER)) + 
+  geom_smooth(aes(x=NDVI_SUMMER, y=TEMP_SUMMER), method=lm) + 
+  labs(x = "Summer NDVI", y="Summer Temperature")
+
+```
+
+### Part I: Forming a hypothesis
+
+Is there a relationship between NDVI and temperature? Why do you think this exists? Form a hypothesis.  
+
+Draw a conceptual model of the surface energy balance, including all incoming and outgoig fluxes. This could be free hand or with a computer app. Include your picture here using the example code below. 
+![caption](logopng.png) 
+
+
+
+In equation form, the surface energy balance looks like this. In a list below, describle each term in the equation and what they represent. 
+$$Q_{av} = L_{out} + k_H(\Delta T) + k_E(\Delta VPD)$$
+
+
+could also ask about all three different parameters 
+
+sensitivity analysis: relative humidity, albedo. 
+
+can we vary RH from 0-1 and see how temp changes? then plot that 
+- set up SA with albedo as an example for them 
+- have them look at parameters and figure out which parameters to be able to change. Can you figure it out from an equation? 
+
+direct them to test RH then have plot with RH  on x axis
+
+
+## Surface Energy Balance - Solving for surface temperature 
+
+The chunck below consists of functions needed to do the assignment. 
 ```{r functions}
 
 # the following functions are needed to solve the surface energy balance and calculate latent heat 
 # run this chunk to load the functions into R 
-
-# temperature is represented as x (in celsius)
-seb <- function(x){ (
-    -Q_av + 
-    eps*sigma*(x+273.15)^4 + 
-    k_H*(x-T_a) + 
-    k_E*(RH_s*0.61078*exp(17.27*x/(x+237.3)) -      
-           RH*0.61078*exp(17.27*T_a/(T_a+237.3))))
-}
 
 # Tetens eq. to solve for saturated vapor pressure (used in LE eq.)
 sat_vp <- function(T){
@@ -33,13 +95,43 @@ sat_vp <- function(T){
   return(e)
   }
 
+# surface energy balance returns surface temperature
+# input is surface temperature, represented as x (in celsius)
+seb <- function(x, veg, alpha=0.15, eps=0.95){ 
+  k_E = veg*50
+  RH_s = veg
+  L_inc = 0.9 * sigma * (T_a+273.15)^4  # W/m^2, incoming longwave radiation
+Q_av = 0.9 * (K_inc*(1-alpha) + L_inc) # W/m^2 
+
+  k = Q_av 
+  L = eps*sigma*(x+273.15)^4
+  Qh = k_H*(x-T_a)
+  Qe = k_E*(RH_s*sat_vp(x) - RH*sat_vp(T_a))
+  val = -k + L + Qh + Qe
+  return(val)
+}
+
+
+## returns bar plot of the different fluxes
+plot_fluxes <- function(veg){
+  range=c(1,100)
+  x <- uniroot.all(seb, range, veg=veg)
+  L_inc = 0.9 * sigma * (T_a+273.15)^4  # W/m^2, incoming   longwave radiation
+  Q_av = 0.9 * (K_inc*(1-alpha) + L_inc) # W/m^2 
+  k = Q_av
+  k_E = veg*50
+  RH_s = veg
+  L = eps*sigma*(x+273.15)^4
+  Qh = k_H*(x-T_a)
+  Qe = k_E*(RH_s*sat_vp(x) - RH*sat_vp(T_a))
+  fluxes <- data.frame(flux=c("k","L","Qh","Qe"), value=c(k,L,Qh,Qe))
+  plot <- ggplot(fluxes) + geom_col(aes(x=flux, y=value, fill=flux))
+  return(plot)
+}
+
 ```
 
 Run the code below to assign the variables and calculate the surface temperature. 
-
-Note: For setting the variables, we've set the initial values as the same for the building roof example in your assignment. You'll need to copy and paste this chunk for the other surfaces. 
-
-**How can we highlight which variables they need to change?** 
 
 ```{r vars}
 T_a = 28 # ambient atm temp in Celsius 
@@ -47,77 +139,55 @@ alpha = 0.15 # albedo of the surface
 eps = 0.95 # emissivity of the surface
 sigma = 5.6704*10^-8 #W/m^2/K^4 stefan-boltzmann constant
 k_H = 21 # Sensible heat conductivity [J/deg-C]
-k_E = 100 # [J/kPa] Latent heat conductivity (only present if surface is wet)
-
+#k_E = 100 # [J/kPa] Latent heat conductivity (only present if surface is wet)
 RH = 0.4 # Relative humidity of atmosphere, [0-1]
-RH_s = 1 # Relative humidity of the surface (assume 1 is wet/irrigated, 0 is dry)
-
+#RH_s = 0.25 # Relative humidity of the surface (assume 1 is wet/irrigated, 0 is dry)
 K_inc = 800 # W/m^2, incoming shortwave radiation (this changes during night)
-L_inc = 0.9 * sigma * (T_a+273.15)^4  # W/m^2, incoming longwave radiation
-Q_av = 0.9 * (K_inc*(1-alpha) + L_inc) # W/m^2 
+
 
 ## Run the below code to solve for surface temperature
 # temp_s is surface temperature
 range = c(0,100)
-temp_s = uniroot.all(seb, range) 
-temp_s
-```
+test_veg <- function(veg){
+  temp_s = uniroot.all(seb, range, veg=veg)
+  return(temp_s)
+}
 
+# quick SA for veg parameter 
+veg <- seq(0,1, by=0.05)
+test <- sapply(X=veg, FUN=test_veg)
+plot(veg, test) # plot veg v. temp 
 
-With the given inputs from step 1, the surface temperature is `r format(round(temp_s, 2), nsmall = 2)` degrees C. 
-
-**change this part to show different temps for the different surfaces, or add table**
-
-Maybe copy and paste all of the above? to get the different values of the temperature rather than going back and re-writing variables, making it all one long doc 
-
-
-
-### Part 2, number 4:
-
-- first solve for water amount for typical midday during August (from 10am to 2pm)
-```{r water}
-
-# surface temp from the last chunk (make sure all variables are set to the irrigated lawn scenario) 
-Ts = temp_s 
-Ts = 26.8
-# Latent Heat 
-LE = k_E*(sat_vp(Ts)*RH_s - sat_vp(T_a)*RH) # W/m^2
-
-# Latent energy of vaporization
-cp = 2200*(10^3) # J/kg
-
-# solve for amount of water 
-mass_flux = LE/cp # kg/s/m^2
-
-# over 4 hours 
-water = mass_flux*3600*4 
-water # kg / m^2
+# plot_fluxes shows a bar plot of the different energy fluxes. Change veg between 0 to 1 to see how the latent and sensible energy change 
+plot_fluxes(veg=1)
 
 ```
 
-### Part 2, number 4b:
 
-- then convert evaporated water to gallons needed for entire lawn on August day
-```{r gal}
-sqft = 10.76 #sqft/sqm
-lawn = 3000 #sqft
-gal = 3.79 #kg
+### Part ??: Discussion
+a couple of discussion questions about: 
+ - white pain on pavement - how does this change seb and temps? 
+ - veg and temp - how does this affect people living there?
+ 
 
-gallons = water/0.7/sqft*lawn/gal
 
-gallons
+### Part ??: Socioeconomic data 
+
+Remember the NDVI. v. temp plot above? Now it's your turn to explore the data set (LA_nbhds) and create plots. You can use anything you've learned from 206 so far to explore and summarize the data. Create at least one plot that includes NDVI or temperature on the x-axis, and a socio-economic variable on the y-axis. You can copy and paste the code from above, but also be creative! Then answer the reflection questions below. 
+```{r socioeconomic}
+
+## plot here
+
 ```
 
-## Notes from meeting 9/9/20
 
-- Create ggplots, where all they change is x or y 
-- Plot maps - shapefile of neighborhoods with variables 
-- use code to make calculations, not a coding assignment 
-- think about ways to make it transferrable - are there similar patterns in other cities? 
-- part 1 will be in class 
-- parts 2 and 3 in Rmarkdown
-- add table of values  
-- data will be uploaded by Friday (email Cascade w questions)
-- add background readings in the intro 
-- write intro to provide info on whatever we decide is in the rest of the doc 
-- don't make equations a priority
+1. Based on your plot(s) what relationship exists? Write a short (1-2 paragraph max) reaction/response to your findings, focusing on what they imply for issues related to environmental management, planning, and/or environmental justice. While your response should refer to the specifics of your plots/presentation, you do not need to do an exhaustive analysis or find citations to support your inference.
+
+
+2. For this entire assignment: Share a thought or lesson that clicked for you. What was the most interesting part?  
+
+
+
+
+
+
