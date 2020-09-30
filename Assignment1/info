@@ -1,0 +1,17 @@
+What's in this folder? 
+
+Assignment1_2.html -  the mostly filled out, knitted assignment, contains all the plots but not written answers. Will probably become the key to grade off of, so we should delete this before posting folder on GS. 
+Assignment1_2.Rmd -  the code used to create the above, again, should delete before posting. 
+
+Assignment1_blank.html -  the directions for completing the assignment 
+Assignment1_blank.Rmd -  the outlined markdown code for completing the assignment. Students should save it as a different name and work off of it. 
+
+ESM203_F2020_Ass1.csv -  the CSV of the socioeconomic data, gets loaded into R markdown in order to create plots
+
+scatter.jpeg - a photo used as an example in the Assignment1_blank files
+
+The following are needed to load in and plot the spatial data: 
+ - ESM203_F2020_Ass1.cpg
+ - ESM203_F2020_Ass1.dbf
+ - ESM203_F2020_Ass1.shp
+ - ESM203_F2020_Ass1.shx
