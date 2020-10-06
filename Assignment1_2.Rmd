@@ -12,11 +12,6 @@ We've assembled a dataset that captures a snapshot of average midday temperature
 from the incredibly awesome Mapping LA project developed by the [LA Times](http://maps.latimes.com/neighborhoods), which is worth checking out. See a description of each column in the dataset at this [link](https://docs.google.com/spreadsheets/d/1Hh-hMt5RuXA3lBYX8G16T3334zXQfbFnJzCxh3qbDsw/edit#gid=0)
 
 
-**Note**: For those of you new to southern CA, August is the height of the mediterranean dry season, and it usually doesn't rain much (if at all) between May and October. This means that the data on vegetation you are seeing must be associated with irrigated lawns, gardens, or parks and open spaces with numerous deeply-rooted trees.
-
-
-
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
@@ -137,15 +132,14 @@ sat_vp <- function(T){
 # input is surface temperature, represented as x (in celsius)
 # veg represents % veg cover, alpha is albedo, and eps is emissivity 
 seb <- function(x, veg=0, alpha=0.15, eps=0.95){ 
-  k_E = veg*50
-  RH_s = veg
+  r_w = 1/(veg*50) # scaler for veg 
   L_inc = 0.9 * sigma * (T_a+273.15)^4  # W/m^2, incoming longwave radiation
 Q_av = 0.9 * (K_inc*(1-alpha) + L_inc) # W/m^2 
   k = Q_av 
   L = eps*sigma*(x+273.15)^4
-  Qh = k_H*(x-T_a)
-  Qe = k_E*(RH_s*sat_vp(x) - RH*sat_vp(T_a))
-  val = -k + L + Qh + Qe
+  Qh = 1.15*1005*(x-T_a)/r_H # sensible heat flux
+  Qe = 1.15*1005/66.5*(sat_vp(x) - sat_vp(T_a))/r_w # latent heat flux
+  val = - k + L + Qh + Qe
   return(val)
 }
 
@@ -154,14 +148,13 @@ plot_fluxes <- function(veg){
   alpha=0.2
   range=c(1,100)
   x <- uniroot.all(seb, range, veg=veg, alpha=0.2)
-  L_inc = 0.9 * sigma * (T_a+273.15)^4  # W/m^2, incoming   longwave radiation
-  Q_av = 0.9 * (K_inc*(1-alpha) + L_inc) # W/m^2 
+  L_inc = 0.9 * sigma * (T_a+273.15)^4  # W/m^2, incoming Longwave
+  Q_av = 0.9 * (K_inc*(1-alpha) + L_inc) # W/m^2, net radiation 
   k = Q_av
-  k_E = veg*50
-  RH_s = veg
+  r_w = 1/(50*veg) # scaler for veg 
   L = 0.95*sigma*(x+273.15)^4
-  Qh = k_H*(x-T_a)
-  Qe = k_E*(RH_s*sat_vp(x) - RH*sat_vp(T_a))
+  Qh = 1.15*1005*(x-T_a)/r_H 
+  Qe = 1.15*1005/66.5*(sat_vp(x) - sat_vp(T_a))/r_w
   fluxes <- data.frame(flux=c("k","L","Qh","Qe"), value=c(k,L,Qh,Qe))
   plot <- ggplot(fluxes) + geom_col(aes(x=flux, y=value, fill=flux))
   return(plot)
@@ -175,9 +168,9 @@ In order to use this equation to test our hypothesis we are going to do a sensiv
 
 We learned in class that albedo affects the amount of shortwave radation entering the surface by reflecting some back. Albedo affects the available energy at the surface, $Q_{av}$ through the equations:
 
-$$S_{net} = (S_{\downarrow}*(1-\alpha)$$ 
+$$S_{net} = S_{\downarrow}*(1-\alpha)$$ 
 
-$$R_{av} = 0.9*S_{net} + L_{\downarrow})$$
+$$R_{av} = 0.9*S_{net} + L_{\downarrow}$$
 
 Where $\alpha$ represents albedo. Use the code below to explore the model outcomes, and to answer the questions below. 
 
@@ -185,11 +178,8 @@ The following are other variables needed to use the model. No need to change the
 ```{r vars}
 T_a = 28 # ambient atm temp in Celsius 
 sigma = 5.6704*10^-8 #W/m^2/K^4 stefan-boltzmann constant
-k_H = 21 # Sensible heat conductivity [J/deg-C]
-#k_E = 100 # [J/kPa] Latent heat conductivity (only present if surface is wet)
-RH = 0.4 # Relative humidity of atmosphere, [0-1]
-#RH_s = 0.25 # Relative humidity of the surface (assume 1 is wet/irrigated, 0 is dry)
-K_inc = 800 # W/m^2, incoming shortwave radiation (this changes during night)
+r_H = 20 # Sensible heat resistivity
+K_inc = 800 # W/m^2, incoming shortwave radiation
 ```
 
 
