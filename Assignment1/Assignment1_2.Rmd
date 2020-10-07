@@ -12,7 +12,7 @@ We've assembled a dataset that captures a snapshot of average midday temperature
 from the incredibly awesome Mapping LA project developed by the [LA Times](http://maps.latimes.com/neighborhoods), which is worth checking out. See a description of each column in the dataset at this [link](https://docs.google.com/spreadsheets/d/1Hh-hMt5RuXA3lBYX8G16T3334zXQfbFnJzCxh3qbDsw/edit#gid=0)
 
 
-**Note**: For those of you new to southern CA, August is the height of the Mediterranean dry season, and - in 2018 at least - it hasn’t rained much (if at all) since May. This means that the data on vegetation you are seeing must be associated with irrigated lawns, gardens, or parks and open spaces with numerous deeply-rooted trees.
+**Note**: For those of you new to southern CA, August is the height of the Mediterranean dry season, and therefore it hasn’t rained much (if at all) since May. This means that the data on vegetation you are seeing must be associated with irrigated lawns, gardens, or parks and open spaces with numerous deeply-rooted trees.
 
 
 ```{r setup, include=FALSE}
@@ -28,12 +28,20 @@ library(rgdal)
 
 In this assignment, we'll be exploring surface temperatures of different neighborhoods in Los Angeles County. To get a better idea of the spatial patterns within the county, check out the plot below. While the data we will use for analysis will be a finer spatial resolution, we include this just to give you a visual.
 
-```{r map, message = F, warning=F}
+#Include neighborhood map here.  
+
+```{r map, echo=F, message = F, warning=F}
 # load shapefile - this contains map of neighborhoods
-losang <- shapefile("ESM203_F2020_Ass1.shp")
+# comment this out when giving them the Rmd
+losang <- shapefile("../CPT/data/ESM203_F2020_Ass1.shp")
 
 # view spatially averaged temperature 
 spplot(losang, 'TEMP_SUMME', main="Mean August 2020 Temperature")
+
+# to view the spatial data, uncomment and run the code below. this is optional and if you get errors, just comment out when knitting the file.
+# library(mapview)
+# mapview(losang)
+
 ```
 
 #### Observations 
@@ -42,7 +50,7 @@ Lets start by just exploring our data. One of the first things we'd want to expl
 
 ```{r data_overview, message=F}
 # load in data as a CSV 
-LA_nbhds <- read.csv("ESM203_F2020_Ass1.csv")
+LA_nbhds <- read.csv("../CPT/data/ESM203_F2020_Ass1.csv")
 
 # output column names
 colnames(LA_nbhds)
@@ -69,14 +77,14 @@ LA_nbhds %>%
   dplyr::filter(NDVI_SUMMER > 0 & NDVI_SUMMER < 1) %>% 
   ggplot() + geom_jitter(aes(x=NDVI_SUMMER, y=TEMP_SUMMER)) + 
   geom_smooth(aes(x=NDVI_SUMMER, y=TEMP_SUMMER), method=lm) + 
-  labs(x = "Summer NDVI", y="Summer Temperature") +
-  ggtitle("August 2020 surface temperature and NDVI of LA County")
+  labs(x = "August NDVI", y="August Temperature (deg C)") +
+  ggtitle("Mean August 2020 surface temperature and NDVI of LA County")
 
 ```
 
 ##### Answer these questions:
 
-1. Describe the relationship between temperature and NDVI
+1. Describe the relationship between August 2020 Mean Temperature and NDVI
 
 > Leaving the arrow (>), delete this text and write your answer here
 
@@ -84,36 +92,40 @@ LA_nbhds %>%
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-3. Now based upon your explanation above, take your most likely one and form a single statement here, which we will use the model to test. This is your hypothesis. Again, there is no "right answer," so please don't go back and change this.
+3. Now based upon your explanation form a single statement here, which we will use the model to test. This is your hypothesis. There is no "right answer," so please dont go back and change this.
 
 > Leaving the arrow (>), delete this text and write your answer here
 
 
 ### Part II: Understanding the surface energy balance model
 
-We're gonna be using equations throughout this class, so lets learn how to become more literate in equations. To do this we're going to explain the parameters in words as well as draw a conceptual model. This may take some time---but its an extremely important skill. So take a deep breath, be patient with yourself, and dive in. 
+We're going be using equations throughout this class, so lets learn how to become more literate in equations. To do this we're going to explain the components and then draw a conceptual model. This may take some time, but its an extremely important skill. So take a deep breath, be patient with yourself, and dive in. 
 
-Here is the somewhat simplified equation we will be using. You will first write a description of what each flux is.
+Here is the somewhat simplified equation we will be using, based off of the equation on page 211 of Chapter 7 in Ecological Climatology by Bonan.
 
-$$Q_{av} = L_{out} + k_H(\Delta T) + k_E(\Delta VPD)$$
+$$(1 - \alpha)S_{\downarrow} + \epsilon L_{\downarrow} = L_{\uparrow} + \frac{(\Delta T)}{r_H} + \frac{(\Delta e)}{r_W}$$
 
 ##### Answer these questions:
 
-Define the terms of the equation. If you need a hint, check out this chapter on [surface energy fluxes](https://gauchospace.ucsb.edu/courses/pluginfile.php/10694510/mod_resource/content/2/Reading%20for%20Surface%20Energy%20Balance.pdf).
+Define each of the terms of the equation. If you need a hint, check out the chapter on [Surface Energy Fluxes](https://gauchospace.ucsb.edu/courses/pluginfile.php/10694510/mod_resource/content/2/Reading%20for%20Surface%20Energy%20Balance.pdf).
 
-4. $Q_{av}$
-
-> Leaving the arrow (>), delete this text and write your description here
-
-5. $L_{out}$
+4. $(1 - \alpha)S_{\downarrow}$
 
 > Leaving the arrow (>), delete this text and write your description here
 
-6. $k_H(\Delta T)$
+4. $\epsilon L_{\downarrow}$
+
+> Leaving the arrow (>), delete this text and write your description here
+
+5. $L_{\uparrow}$
+
+> Leaving the arrow (>), delete this text and write your description here
+
+6. $\frac{(\Delta T)}{r_H}$
 
 > Leaving the arrow (>), delete this text and write your description here. Describe both terms.
 
-7. $k_E(\Delta VPD)$
+7. $\frac{(\Delta e)}{r_W}$
 
 > Leaving the arrow (>), delete this text and write your description here. Describe both terms
 
@@ -123,12 +135,11 @@ Define the terms of the equation. If you need a hint, check out this chapter on 
 
 
 
-#### Draw a conceptual model 
+#### Draw a conceptual model of the surface energy balance 
 
-If you're unsure about what a conceptual model is please reference the slides or Google it, and a hint -- you've seen before the conceptual model you should be drawing.
+Draw a conceptual model of the equation from above, showing each of the fluxes going in and out of the surface. If you're unsure what a conceptual model is please reference the slides or google it, and a hint---you've seen the conceptual model you should be drawing before.
 
-9. To insert you conceptual model into this document: create a conceptual model by hand or on the computer and then turn it into a .jpg, or any photo file type. Include that photo into the folder that this assignment is in. Copy this and paste it below on its own line: !  [caption](name_of_photo.jpg). Delete the spaces between ! and [caption], and fill in the code with the appropriate text.
- 
+9. To insert you conceptual model into this document: create a conceptual model by hand or on the computer and then turn it into a .jpg, or any photo file type. Include that photo in the assignment folder, and then use this code as a template to add it to this document: `![Caption](filename_conceptual_model.jpg)`
 
 
 
@@ -149,54 +160,55 @@ sat_vp <- function(T){
 # veg represents % veg cover, alpha is albedo, and eps is emissivity 
 seb <- function(x, veg=0, alpha=0.15, eps=0.95){ 
   r_w = 1/(veg*50) # scaler for veg 
-  L_inc = 0.9 * sigma * (T_a+273.15)^4  # W/m^2, incoming longwave radiation
-Q_av = 0.9 * (K_inc*(1-alpha) + L_inc) # W/m^2 
-  k = Q_av 
-  L = eps*sigma*(x+273.15)^4
-  Qh = 1.15*1005*(x-T_a)/r_H # sensible heat flux
-  Qe = 1.15*1005/66.5*(sat_vp(x) - sat_vp(T_a))/r_w # latent heat flux
-  val = - k + L + Qh + Qe
+  L_inc = 0.9*sigma * (T_a+273.15)^4  # incoming longwave radiation [W/m^2]
+  R_av = (K_inc*(1-alpha) + L_inc) # net available energy at surface [W/m^2] 
+  L_out = eps*sigma*(x+273.15)^4 # outgoing longwave radiation [W/m^2]
+  H = 1.15*1005*(x-T_a)/r_H # sensible heat flux [W/m^2]
+  E = 1.15*1005/66.5*(sat_vp(x) - sat_vp(T_a))/r_w # latent heat flux [W/m^2]
+  val = - R_av + L_out + H + E
   return(val)
 }
 
 ## returns bar plot of the different fluxes
-plot_fluxes <- function(veg){
+plot_fluxes <- function(veg_cov){
   alpha=0.2
   range=c(1,100)
-  x <- uniroot.all(seb, range, veg=veg, alpha=0.2)
-  L_inc = 0.9 * sigma * (T_a+273.15)^4  # W/m^2, incoming Longwave
-  Q_av = 0.9 * (K_inc*(1-alpha) + L_inc) # W/m^2, net radiation 
-  k = Q_av
-  r_w = 1/(50*veg) # scaler for veg 
-  L = 0.95*sigma*(x+273.15)^4
-  Qh = 1.15*1005*(x-T_a)/r_H 
-  Qe = 1.15*1005/66.5*(sat_vp(x) - sat_vp(T_a))/r_w
-  fluxes <- data.frame(flux=c("k","L","Qh","Qe"), value=c(k,L,Qh,Qe))
-  plot <- ggplot(fluxes) + geom_col(aes(x=flux, y=value, fill=flux))
+  x <- uniroot.all(seb, range, veg=veg_cov, alpha=0.2)
+  r_w = 1/(veg_cov*50) # scaler for veg
+  L_inc = 0.9*sigma * (T_a+273.15)^4  # incoming longwave radiation [W/m^2]
+  R_av = (K_inc*(1-alpha) + L_inc) # net available energy at surface [W/m^2] 
+  L_out = eps*sigma*(x+273.15)^4 # outgoing longwave radiation [W/m^2]
+  H = 1.15*1005*(x-T_a)/r_H # sensible heat flux [W/m^2]
+  E = 1.15*1005/66.5*(sat_vp(x) - sat_vp(T_a))/r_w # latent heat flux [W/m^2]
+  fluxes <- data.frame(flux=c("R_av","L_out","H","E"), value=c(R_av,L_out,H,E))
+  fluxes$flux <- factor(fluxes$flux, levels=c("R_av", "L_out", "H","E"))
+  plot <- ggplot(fluxes) + geom_col(aes(x=flux, y=value, fill=flux)) +
+    ylab("energy [W/m^2]")
   return(plot)
 }
 
 ```
 
-In order to use this equation to test our hypothesis we are going to do a sensitivity analysis. To perform this, we vary one parameter at a time and observe how the output changes, which in this case the output we care about is temperature. We're first going to do an example together, and then you'll do one on your own.
+In order to use this equation to test our hypothesis we are going to do a sensitivity analysis. To perform this, we vary one parameter at a time and observe how the output changes, which in this case is temperature. We're first going to do an example together, and then you'll do one on your own.
 
 #### Albedo
 
-We learned in class that albedo affects the amount of shortwave radiation entering the surface by reflecting some back. Albedo affects the available energy at the surface, $Q_{av}$ through the equations:
+We learned in class that albedo affects the amount of shortwave radiation entering the surface by reflecting some back. Albedo affects the available energy at the surface, which we will call $R_{av}$, through the equations:
 
-$$K_{net} = (K_{inc}*(1-\alpha)$$ 
+$$S_{net} = S_{\downarrow}*(1-\alpha)$$ 
 
-$$Q_{av} = 0.9*K_{net} + L_{inc})$$
+$$R_{av} = S_{net} + L_{\downarrow}$$
+
 
 Where $\alpha$ represents albedo. Use the code below to explore the model outcomes, and to answer the questions below. 
 
-The follow chunk includes variables that are inputs for the model. No need to change these. 
+The following are other variables needed to use the model. No need to change these.  
 ```{r vars}
+eps = 0.95 # surface emissivity
 T_a = 28 # ambient atm temp in Celsius 
 sigma = 5.6704*10^-8 #W/m^2/K^4 stefan-boltzmann constant
-r_H = 20 # Sensible heat resistivity 
-#k_E = 100 # [J/kPa] Latent heat conductivity (only present if surface is wet)
-K_inc = 800 # W/m^2, incoming shortwave radiation (this changes during night)
+r_H = 20 # Sensible heat resistivity
+K_inc = 800 # W/m^2, incoming shortwave radiation
 ```
 
 This chunk runs the model, outputs the steady state temperature, and displays the graph of the sensitivity analysis.
@@ -213,11 +225,14 @@ test_albedo <- function(x){
 test_albedo(x=0.9)
 
 # The code below runs the above function for every value of albedo in the 'alpha' vector below
-# quick sensitivity analysis for veg parameter 
+# quick SA for veg parameter 
 alpha <- seq(0,1, by=0.05)
 test <- sapply(X=alpha, FUN=test_albedo)
-# plot albedo v. temp 
-plot(alpha, test, xlab="Albedo", ylab="Surface temperature")
+# combine input and output 
+albedo_df <- data.frame(alpha, test)
+# plot data frame (do this together in discussion)
+ggplot(albedo_df) + geom_point(aes(x=alpha, y=test)) + 
+  labs(x="albedo", y="surface temperature (deg C)")
 
 ```
 
@@ -242,16 +257,18 @@ Now its your turn do a sensitivity analysis based upon the amount of vegetation.
 
 Remember that we defined latent energy as:
 
-$$Q_E = k_E(\Delta VPD)$$
+$$\lambda E \propto \frac{\Delta e}{r_W}$$
 
-But in reality, it's a bit more complicated: 
+But in reality, as we've seen in the reading, it's a bit more complicated: 
 
-$$Q_E = -\frac{\rho*C_p}{\gamma}*\frac{e_a - e_{*}[T_s]}{r}$$
+$$\lambda E = -\frac{\rho*C_p}{\gamma}*\frac{e_a - e_{*}[T_s]}{r_W}$$
 
-Where $-\frac{\rho*C_p}{\gamma}$ represents the density of water, specific heat capacity, and the psychometric constant. 
-The second part, $(e_a - e_{*}[T_s])$ is the vapor pressure deficit, or the difference between the saturated surface and the air. The amount of saturation of a **vegetated** surface depends on how much water is available to the vegetation. $r$ in the equation represents a resistance, that can change with vegetation ecophysiological differences and atmospheric conditions. We will be learning more about this later in 203. For now, we created a dummy variable, called 'veg', that accounts for these changes when vegetation is present. 
+Where $-\frac{\rho*C_p}{\gamma}$ represents the density of water, specific heat capacity, and the psychrometric constant, which depends on the heat capacity, atmospheric pressure, and latent heat of vaporization.
+The second part, $(e_a - e_{*}[T_s])$ is the gradient of vapor pressure between the atmosphere and the surface. The resistance to vapor transfer between the surface and the atmosphere is $r_W$. When this resistance is high, the rate of evaporation is low and when the resistance is low, the rate of evaporation is higher. All other things being equal, the resistance to vapor transport is determined by amount of **vegetated** surface. Of course, $r_W$ can change if vegetation becomes water-limited, or if the atmospheric conditions change. Check out [section 7.2](https://gauchospace.ucsb.edu/courses/pluginfile.php/10694510/mod_resource/content/2/Reading%20for%20Surface%20Energy%20Balance.pdf) to learn more. 
 
-In the same way we did a sensitivity analysis for albedo, this chunk does a sensitivity analysis for vegetation.
+For this model, we will use the fraction of vegetation cover, called 'veg', to account for changes in the resistance to water vapor transport when vegetation is present. 
+
+In the same way we did a sensitivity analysis for albedo, this chunk does a sensitivity analysis for vegetation. 
 ```{r veg_sa}
 ## Run the below code to solve for surface temperature
 # temp_s is surface temperature
@@ -261,18 +278,21 @@ test_veg <- function(veg){
   return(temp_s)
 }
 
-# quick sensitivity analysis for veg parameter 
+# quick SA for veg parameter 
 veg <- seq(0,1, by=0.05)
 test <- sapply(X=veg, FUN=test_veg)
-plot(veg, test, xlab="% vegetation", ylab="Surface temperature") # plot veg v. temp 
+# copy and paste the code from the albedo testing above, then create a plot of veg vs. surface temperature  
+veg_df <- data.frame(veg, test)
+ggplot(veg_df) + geom_point(aes(x=veg, y=test))
+
 ```
 
 
-We have created a function that lets you plot the different energy fluxes based on the amount of vegetation. Use this tool to help conceptualize the results of your sensitivity analysis above. You can change the number in plot_fluxes(veg=#) to see how different amounts of vegetation affect the different major fluxes of the energy model. If it helps, copy and past the chunk to plot multiples of these.
+We have created a function that lets you plot the different energy fluxes based on the amount of vegetation. Use this tool to help conceptualize the results of your sensitivity analysis above. You can change the number in `plot_fluxes(veg=#)` to see how different amounts of vegetation affect the different major fluxes of the energy model. Copy and past the line to plot multiples of this plot.
 
 ```{r plot}
 # plot_fluxes shows a bar plot of the different energy fluxes. Change veg between 0 to 1 to see how the latent and sensible energy change 
-plot_fluxes(veg=1)
+plot_fluxes(veg_cov=0)
 ```
 
 ##### Answer these questions:
@@ -293,7 +313,7 @@ plot_fluxes(veg=1)
 
 ### Part IV: Connecting to socioeconomic data 
 
-Remember the NDVI. v. temp plot above? Now it's your turn to explore the data set (LA_nbhds) and create your own plots. This is your turn to apply what you have learned and get creative. You can use anything you've learned from 206 so far to explore and summarize the data. Create at least one plot that includes NDVI or temperature on the x-axis, and a socio-economic variable on the y-axis. You can copy and paste the code from above, but also be creative! Then answer the reflection questions below. 
+Remember the NDVI. v. temp plot above? Now it's your turn to explore the data set (`LA_nbhds`) and create your own plots. This is your turn to apply what you have learned and get creative. You can use anything you've learned from 206 so far to explore and summarize the data. Create at least one plot that includes NDVI or temperature on the x-axis, and a socio-economic variable on the y-axis. You can copy and paste the code from above, but also be creative! Then answer the reflection questions below. 
 ```{r socioeconomic}
 ## plot here
 ```
