@@ -9,10 +9,9 @@ This assignment is going to use the principles of energy balance to examine how 
 
 
 We've assembled a dataset that captures a snapshot of average midday temperatures in August, the amount of vegetation, and a host of social/economic data across each neighborhood in the county of Los Angeles. The temperature data is from the Landsat satellite’s surface thermal data and was acquired in the Spring (April) and Summer (August) of 2020. The vegetation data is characterized by the Normalized Difference Vegetation Index (NDVI), and is taken from similar dates. [NDVI](https://earthobservatory.nasa.gov/features/MeasuringVegetation/measuring_vegetation_2.php) is a measure of “greenness” and higher values of NDVI indicate a greater amount of green vegetation within each neighborhood. The neighborhood information is collated
-from the incredibly awesome Mapping LA project developed by the [LA Times](http://maps.latimes.com/neighborhoods), which is worth checking out. See a description of each column in the dataset at this [link](https://docs.google.com/spreadsheets/d/1Hh-hMt5RuXA3lBYX8G16T3334zXQfbFnJzCxh3qbDsw/edit#gid=0)
+from the incredibly awesome Mapping LA project developed by the [LA Times](http://maps.latimes.com/neighborhoods), which is worth checking out. See a description of each column in the dataset at this [link](https://docs.google.com/spreadsheets/d/1Hh-hMt5RuXA3lBYX8G16T3334zXQfbFnJzCxh3qbDsw/edit#gid=0). For a visual reference of the LA times project, here is a map of the area of the LA basin and the neighborhoods:
+![](neighborhoods.png){width=75%} 
 
-
-**Note**: For those of you new to southern CA, August is the height of the Mediterranean dry season, and therefore it hasn’t rained much (if at all) since May. This means that the data on vegetation you are seeing must be associated with irrigated lawns, gardens, or parks and open spaces with numerous deeply-rooted trees.
 
 
 ```{r setup, include=FALSE}
@@ -88,7 +87,7 @@ LA_nbhds %>%
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-2. What might be some possible explanations as to why this relationship exists. There's no right answer here, go wild with it. 
+2. What might be some possible explanations as to why this relationship exists? There's no right answer here, go wild with it. 
 
 > Leaving the arrow (>), delete this text and write your answer here
 
@@ -129,7 +128,7 @@ Define each of the terms of the equation. If you need a hint, check out the chap
 
 > Leaving the arrow (>), delete this text and write your description here. Describe both terms
 
-8. Now describe the full equation in no more than two sentences
+8. Now describe the full equation in no more than three sentences
 
 > Leaving the arrow (>), delete this text and write your description here.
 
@@ -137,9 +136,9 @@ Define each of the terms of the equation. If you need a hint, check out the chap
 
 #### Draw a conceptual model of the surface energy balance 
 
-Draw a conceptual model of the equation from above, showing each of the fluxes going in and out of the surface. If you're unsure what a conceptual model is please reference the slides or google it, and a hint---you've seen the conceptual model you should be drawing before.
+Draw a conceptual model of the equation from above, showing each of the fluxes going in and out of the surface. If you're unsure what a conceptual model is please reference the slides or google it, and a hint: you've seen the conceptual model you should be drawing before.
 
-9. To insert you conceptual model into this document: create a conceptual model by hand or on the computer and then turn it into a .jpg, or any photo file type. Include that photo in the assignment folder, and then use this code as a template to add it to this document: `![Caption](filename_conceptual_model.jpg)`
+9. To insert your conceptual model into this document: create a conceptual model by hand or on the computer and then turn it into a .jpg, or any photo file type. Include that photo in the assignment folder, and then use this code as a template to add it to this document: `![Caption](filename_conceptual_model.jpg)`
 
 
 
@@ -242,7 +241,7 @@ ggplot(albedo_df) + geom_point(aes(x=alpha, y=test)) +
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-11. Think about a roof made of asphalt, and a roof that has been painted white. Which would have a higher albedo?
+11. Think about a roof made of asphalt and a roof that has been painted white. Which would have a higher albedo?
 
 > Leaving the arrow (>), delete this text and write your answer here
 
@@ -259,7 +258,7 @@ Remember that we defined latent energy as:
 
 $$\lambda E \propto \frac{\Delta e}{r_W}$$
 
-But in reality, as we've seen in the reading, it's a bit more complicated: 
+But in reality, as we've seen in the reading, it's a bit more complicated (dont get stuck on this equation its additional information): 
 
 $$\lambda E = -\frac{\rho*C_p}{\gamma}*\frac{e_a - e_{*}[T_s]}{r_W}$$
 
