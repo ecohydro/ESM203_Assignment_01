@@ -282,7 +282,8 @@ veg <- seq(0,1, by=0.05)
 test <- sapply(X=veg, FUN=test_veg)
 # copy and paste the code from the albedo testing above, then create a plot of veg vs. surface temperature  
 veg_df <- data.frame(veg, test)
-ggplot(veg_df) + geom_point(aes(x=veg, y=test))
+ggplot(veg_df) + geom_point(aes(x=veg, y=test)) + 
+  labs(x="vegetation (%)", y="surface temperature (deg C)")
 
 ```
 
@@ -291,7 +292,7 @@ We have created a function that lets you plot the different energy fluxes based 
 
 ```{r plot}
 # plot_fluxes shows a bar plot of the different energy fluxes. Change veg between 0 to 1 to see how the latent and sensible energy change 
-plot_fluxes(veg_cov=0)
+plot_fluxes(veg_cov=1)
 ```
 
 ##### Answer these questions:
