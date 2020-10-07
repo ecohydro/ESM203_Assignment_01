@@ -1,5 +1,6 @@
 ---
 title: "203 Assignment 1"
+subtitle: "YOUR NAME HERE"
 output: pdf_document
 urlcolor: blue
 ---

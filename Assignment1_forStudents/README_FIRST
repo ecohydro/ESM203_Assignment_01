@@ -1,0 +1,16 @@
+What's in this folder? 
+
+Assignment1_template.Rmd -  this is the file you'll be editing! It includes instructions as well as code, with blanks for you to fill out. Students should save this as their own, and knit their assignment to PDF turn in.
+
+Assignment1_instructions.pdf - this is the knitted assignment instructions, contains text, links, and code, with some plots. It might be helpful to follow along as you work on your own markdown.   
+
+scatter.jpeg - a photo used as an example in the trend line part 
+neighborhoods.png - a photo used in the intro 
+
+The following are needed to load in and plot the spatial data (optional, not needed to complete the assignment): 
+ - ESM203_F2020_Ass1.cpg
+ - ESM203_F2020_Ass1.dbf
+ - ESM203_F2020_Ass1.shp
+ - ESM203_F2020_Ass1.shx
+
+ESM203_F2020_Ass1.csv -  the CSV of the socioeconomic data, gets loaded into R markdown in order to create plots
