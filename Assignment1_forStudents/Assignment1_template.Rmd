@@ -1,6 +1,6 @@
 ---
 title: "203 Assignment 1"
-subtitle: "YOUR NAME HERE"
+subtitle: "Your Name Here"
 output: pdf_document
 urlcolor: blue
 ---
@@ -11,16 +11,19 @@ This assignment is going to use the principles of energy balance to examine how 
 
 
 We've assembled a dataset that captures a snapshot of average midday temperatures in August, the amount of vegetation, and a host of social/economic data across each neighborhood in the county of Los Angeles. The temperature data is from the Landsat satellite’s surface thermal data and was acquired in the Spring (April) and Summer (August) of 2020. The vegetation data is characterized by the Normalized Difference Vegetation Index (NDVI), and is taken from similar dates. [NDVI](https://earthobservatory.nasa.gov/features/MeasuringVegetation/measuring_vegetation_2.php) is a measure of “greenness” and higher values of NDVI indicate a greater amount of green vegetation within each neighborhood. The neighborhood information is collated
-from the incredibly awesome Mapping LA project developed by the [LA Times](http://maps.latimes.com/neighborhoods), which is worth checking out. See a description of each column in the dataset at this [link](https://docs.google.com/spreadsheets/d/1Hh-hMt5RuXA3lBYX8G16T3334zXQfbFnJzCxh3qbDsw/edit#gid=0). For a visual reference of the LA times project, here is a map of the area of the LA basin and the neighborhoods:
+from the incredibly awesome Mapping LA project developed by the [LA Times](http://maps.latimes.com/neighborhoods), which is worth checking out. See a description of each column in the dataset at this
 
-
+[link](https://docs.google.com/spreadsheets/d/1Hh-hMt5RuXA3lBYX8G16T3334zXQfbFnJzCxh3qbDsw/edit?usp=sharing). For a visual reference of the LA times project, here is a map of the area of the LA basin and the neighborhoods:
 ![](neighborhoods.png){width=75%} 
 
+*Note If the photo above does not show, you need to set your working directory. In the menu at the top, click "Session" -> "Set Working Directory," and navigate to the "Assignment1_forStudents" folder.*
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(rootSolve)
+library(raster)
+library(rgdal)
 ```
 
 
@@ -29,16 +32,13 @@ library(rootSolve)
 In this assignment, we'll be exploring surface temperatures of different neighborhoods in Los Angeles County. To get a better idea of the spatial patterns within the county, check out the plot below. While the data we will use for analysis will be a finer spatial resolution, we include this just to give you a visual.
 
 
-```{r map, echo=F, message = F, warning=F, eval=F}
+```{r map, echo=F, message = F, warning=F}
 
-# to view the spatial data, uncomment and run the code below. this is optional and not necessary to complete the assignment, but provided for you to explore. If you get errors, just comment out this part out when knitting the file.
-
-# library(raster)
-# library(rgdal)
+# to view the spatial data, uncomment and run the code below. this is optional and if you get errors, just comment out when knitting the file.
 # losang <- shapefile("ESM203_F2020_Ass1.shp")
 # spplot(losang, 'TEMP_SUMME', main="Mean August 2020 Temperature")
 
-# copy and paste the next two lines and try running in your console
+# you can also try copy and pasting the below code to your console once 'losang' is loaded in
 # library(mapview)
 # mapview(losang)
 
@@ -103,50 +103,52 @@ We're going be using equations throughout this class, so lets learn how to becom
 
 Here is the somewhat simplified equation we will be using, based off of the equation on page 211 of Chapter 7 in Ecological Climatology by Bonan.
 
-$$(1 - \alpha)S_{\downarrow} + \epsilon L_{\downarrow} = L_{\uparrow} + \frac{(\Delta T)}{r_H} + \frac{(\Delta e)}{r_W}$$
+
+$$(1 - \alpha)S_{\downarrow} + L_{\downarrow} = L_{\uparrow} + H + \lambda E + G$$
 
 ##### Answer these questions:
 
-Define each of the terms of the equation. If you need a hint, check out the chapter on [Surface Energy Fluxes](https://gauchospace.ucsb.edu/courses/pluginfile.php/10694510/mod_resource/content/2/Reading%20for%20Surface%20Energy%20Balance.pdf).
+Define each of the terms of the equation and include one sentence of what the flux is in plain language. If you need a hint, check out the chapter on [Surface Energy Fluxes](https://gauchospace.ucsb.edu/courses/pluginfile.php/10694510/mod_resource/content/2/Reading%20for%20Surface%20Energy%20Balance.pdf).
+
 
 4. $(1 - \alpha)S_{\downarrow}$
 
 > Leaving the arrow (>), delete this text and write your description here
 
-4. $\epsilon L_{\downarrow}$
+5. $L_{\downarrow}$
 
 > Leaving the arrow (>), delete this text and write your description here
 
-5. $L_{\uparrow}$
+6. $L_{\uparrow}$
 
 > Leaving the arrow (>), delete this text and write your description here
 
-6. $\frac{(\Delta T)}{r_H}$
+7. $H$
 
-> Leaving the arrow (>), delete this text and write your description here. Describe both terms.
+> Leaving the arrow (>), delete this text and write your description here
 
-7. $\frac{(\Delta e)}{r_W}$
+8. $\lambda E$
 
-> Leaving the arrow (>), delete this text and write your description here. Describe both terms
+> Leaving the arrow (>), delete this text and write your description here
 
-8. Now describe the full equation in no more than three sentences
+9. $G$ We will be ignoring G for this assignment, but still define it
+
+> Leaving the arrow (>), delete this text and write your description here
+
+10. Now describe the full equation in no more than three sentences
 
 > Leaving the arrow (>), delete this text and write your description here.
 
 
+11. Draw a conceptual model of the equation from above, showing each of the fluxes going in and out of the surface. If you're unsure what a conceptual model is please reference the slides or google it, and a hint: you've seen the conceptual model you should be drawing before. 
 
-#### Draw a conceptual model of the surface energy balance 
-
-Draw a conceptual model of the equation from above, showing each of the fluxes going in and out of the surface. If you're unsure what a conceptual model is please reference the slides or google it, and a hint: you've seen the conceptual model you should be drawing before.
-
-9. To insert your conceptual model into this document: create a conceptual model by hand or on the computer and then turn it into a .jpg, or any photo file type. Include that photo in the assignment folder, and then use this code as a template to add it to this document: `![Caption](filename_conceptual_model.jpg)`
+To insert your conceptual model into this document: create a conceptual model by hand or on the computer and then turn it into a .jpg, or any photo file type. Include that photo in the assignment folder, and then use this code as a template to add it to this document: `![Caption](filename_conceptual_model.jpg)`
 
 
 
 ### Part III: Solving for surface temperature 
 
 The chunk below consists of functions needed to do the assignment. No need to change or do anything here, just run this chunk so the equations can be used later. 
-
 ```{r functions}
 # the following functions are needed to solve the surface energy balance and calculate latent heat 
 
@@ -190,16 +192,6 @@ plot_fluxes <- function(veg_cov){
 
 ```
 
-The following are other variables needed to use the model. No need to change these.  
-
-```{r vars}
-eps = 0.95 # surface emissivity
-T_a = 28 # ambient atm temp in Celsius 
-sigma = 5.6704*10^-8 #W/m^2/K^4 stefan-boltzmann constant
-r_H = 20 # Sensible heat resistivity
-K_inc = 800 # W/m^2, incoming shortwave radiation
-```
-
 In order to use this equation to test our hypothesis we are going to do a sensitivity analysis. To perform this, we vary one parameter at a time and observe how the output changes, which in this case is temperature. We're first going to do an example together, and then you'll do one on your own.
 
 #### Albedo
@@ -213,9 +205,17 @@ $$R_{av} = S_{net} + L_{\downarrow}$$
 
 Where $\alpha$ represents albedo. Use the code below to explore the model outcomes, and to answer the questions below. 
 
-This chunk runs the model, outputs the steady state temperature, and displays the graph of the sensitivity analysis.
+The following are other variables needed to use the model. No need to change these.  
+```{r vars}
+eps = 0.95 # surface emissivity
+T_a = 28 # ambient atm temp in Celsius 
+sigma = 5.6704*10^-8 #W/m^2/K^4 stefan-boltzmann constant
+r_H = 20 # Sensible heat resistivity
+K_inc = 800 # W/m^2, incoming shortwave radiation
+```
 
-```{r solve_alb}
+This chunk runs the model, outputs the steady state temperature, and displays the graph of the sensitivity analysis.
+```{r solve}
 ## Run the below code to solve for surface temperature
 # temp_s is surface temperature
 range = c(0,100)
@@ -234,41 +234,65 @@ test <- sapply(X=alpha, FUN=test_albedo)
 # combine input and output 
 albedo_df <- data.frame(alpha, test)
 # plot data frame (do this together in discussion)
-
+ggplot(albedo_df) + geom_point(aes(x=alpha, y=test)) + 
+  labs(x="albedo", y="surface temperature (deg C)")
 
 ```
 
 ##### Answer these questions:
 
-10. What happens to the surface temperature when albedo increases?
+12. What happens to the surface temperature when albedo increases?
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-11. Think about a roof made of asphalt and a roof that has been painted white. Which would have a higher albedo?
+13. Think about a roof made of asphalt and a roof that has been painted white. Which would have a higher albedo?
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-12. Which would have a higher surface temperature?
+14. Which would have a higher surface temperature?
 
 > Leaving the arrow (>), delete this text and write your answer here
 
 
 #### Vegetation
 
-Now its your turn do a sensitivity analysis based upon the amount of vegetation. 
+Now its your turn do a sensitivity analysis based upon the amount of vegetation, but first we dive a little deeper into the latent energy equation. 
 
-Remember that we defined latent energy as:
+Latent energy is a convective flux, which - from lecture - means that its magnitude is proportional to a gradient and inversely proportional to a resistence:
 
 $$\lambda E \propto \frac{\Delta e}{r_W}$$
 
-But in reality, as we've seen in the reading, it's a bit more complicated (dont get stuck on this equation its additional information): 
+In reality, as we've seen in the reading, this equation is a bit more complicated. For now, dont get too stuck on this; all of the additional terms are related to converting the mass flux of water implied by a vapor gradient into an energy flux. This energy flux is a bit obscure (it's not called "latent" for nothing), but it is the transport of energy away from the surface when there is net evaporation of water at the surface and then subsequent transport of water vapor from the surface to the atmosphere. We only include it to elaborate on the actual equations you are using and to ensure that the equation is dimensionally correct.
 
 $$\lambda E = -\frac{\rho*C_p}{\gamma}*\frac{e_a - e_{*}[T_s]}{r_W}$$
 
-Where $-\frac{\rho*C_p}{\gamma}$ represents the density of water, specific heat capacity, and the psychrometric constant, which depends on the heat capacity, atmospheric pressure, and latent heat of vaporization.
-The second part, $(e_a - e_{*}[T_s])$ is the gradient of vapor pressure between the atmosphere and the surface. The resistance to vapor transfer between the surface and the atmosphere is $r_W$. When this resistance is high, the rate of evaporation is low and when the resistance is low, the rate of evaporation is higher. All other things being equal, the resistance to vapor transport is determined by amount of **vegetated** surface. Of course, $r_W$ can change if vegetation becomes water-limited, or if the atmospheric conditions change. Check out [section 7.2](https://gauchospace.ucsb.edu/courses/pluginfile.php/10694510/mod_resource/content/2/Reading%20for%20Surface%20Energy%20Balance.pdf) to learn more. 
+Where $-\frac{\rho*C_p}{\gamma}$ represents the density of air, $\rho$ (kg/m$^3$), specific heat capacity, $C_p$ (J kg$^{-1}$ $^{\circ}$C$^{-1}$), and the psychrometric constant, $\gamma$ (Pa/$^{\circ}$C). All of these terms are fairly constant, so let's move on to the second group of terms, which vary much more in time and space. 
 
-For this model, we will use the fraction of vegetation cover, called 'veg_cov', to account for changes in the resistance to water vapor transport when vegetation is present. 
+The numerator of the second part, $(e_a - e_{*}[T_s])$ corresponds to the $\Delta e$ term in the simplified equation above. It represents the gradient between the atmospheric vapor pressure, $e_a$ (Pa), and the surface vapor pressure, $e_{*}[T_s]$ (Pa). This gradient is almost always negative, because moisture in plants and the soil usually keeps the surface vapor pressure higher than the atmosphere. The resistance to vapor transfer between the surface and the atmosphere is $r_W$ (s/m). All things being equal, the resistance to vapor transport, $r_W$, is determined by amount of **vegetation** at the surface. Check out [section 7.2](https://gauchospace.ucsb.edu/courses/pluginfile.php/10694510/mod_resource/content/2/Reading%20for%20Surface%20Energy%20Balance.pdf) to learn more. 
+
+##### Answer these questions:
+
+15. If $r_W$ - the resistence to water vapor transport - is determined by the amount of vegetation, then what time of year might you expect the value of $r_W$ to be largest, and why?
+
+> Leaving the arrow (>), delete this text and write your answer here
+
+16. How might the value of $r_W$ change if vegetation became water stressed, and why?
+
+> Leaving the arrow (>), delete this text and write your answer here
+
+17. Over the course of a day, which value - $e_a$ or $e_{*}[T_s])$ - do you expect to change the most, and why?
+
+> Leaving the arrow (>), delete this text and write your answer here
+
+18. What time of day might you expect the surface water vapor gradient, $(e_a - e_{*}[T_s])$, to be most negative, and why?
+
+> Leaving the arrow (>), delete this text and write your answer here
+
+19. Suppose for a moment that the vapor pressure gradient became positive, which means that the atmospheric vapor pressure, $e_a$ is greater than the surface vapor pressure, $e_{*}[T_s]$. What do you think would happen to the latent energy flux? How might this condition alter the surface energy balance? Can you think of an example when this condition has probably happened or is happening?
+
+> Leaving the arrow (>), delete this text and write your answer here
+
+For this model, we will use the fraction of vegetation cover, called 'veg', to account for changes in the resistance to water vapor transport when vegetation is present. 
 
 In the same way we did a sensitivity analysis for albedo, this chunk does a sensitivity analysis for vegetation. 
 ```{r veg_sa}
@@ -285,48 +309,52 @@ veg <- seq(0,1, by=0.05)
 test <- sapply(X=veg, FUN=test_veg)
 # copy and paste the code from the albedo testing above, then create a plot of veg vs. surface temperature  
 
-
-
 ```
 
 
-We have created a function that lets you plot the different energy fluxes based on the amount of vegetation. Use this tool to help conceptualize the results of your sensitivity analysis above. You can change the number in `plot_fluxes(veg_cov)` to see how different amounts of vegetation affect the different major fluxes of the energy model. Copy and past the line to plot multiples of this plot.
+We have created a function that lets you plot the different energy fluxes based on the amount of vegetation. Use this tool to help conceptualize the results of your sensitivity analysis above. You can change the number in `plot_fluxes(veg_cov=#)` to see how different amounts of vegetation affect the different major fluxes of the energy model. Copy and past the line to plot multiples of this plot.
 
 ```{r plot}
-# plot_fluxes shows a bar plot of the different energy fluxes. Change veg between 0 to 1 to see how the latent and sensible energy change - uncomment and run the following line: 
+# plot_fluxes shows a bar plot of the different energy fluxes. Change veg between 0 to 1 to see how the latent and sensible energy change 
 
-#plot_fluxes(veg_cov=0)
+plot_fluxes(veg_cov=1)
 ```
 
 ##### Answer these questions:
 
-13. How does the presence of vegetation affect the surface temperature? 
+20. How does the presence of vegetation affect the modeled surface temperature? 
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-14. Explain why this relationship occurs. Think back to the equation we had you describe.
+21. Explain why this relationship occurs. Think back to the equation we had you describe.
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-15. Does this relationship explain the initial graph between NDVI and temperature above (in the introduction)? Explain. Include a comment about you initial hypothesis as well.
+22. Does this relationship explain the initial graph between NDVI and temperature above (in the introduction)? Explain. Include a comment about your initial hypothesis as well.
 
 > Leaving the arrow (>), delete this text and write your answer here
 
+23. We've only simulated the vegetation effects on surface temperature through its impact on the resistance to water transport ($r_W$). What other components of energy balance might the presence or absence of vegetation alter? 
+
+> Leaving the arrow (>), delete this text and write your answer here
+
+24. You've now explored the relationship between vegetation and temperature as well as albedo and temperature. If someone were to ask you if a green (vegetated) roof or a white roof were better from an energy balance perspective, how might you use this model to answer that question?
+
+> Leaving the arrow (>), delete this text and write your answer here
 
 
 ### Part IV: Connecting to socioeconomic data 
 
-Remember the NDVI. v. temp plot above? Now it's your turn to explore the data set (`LA_nbhds`) and create your own plots. This is your turn to apply what you have learned and get creative. You can use anything you've learned from 206 so far to explore and summarize the data. Create at least one plot that includes NDVI or temperature on the x-axis (remember there is both spring and summer values in the dataset), and a socio-economic variable on the y-axis. You can copy and paste the code from above, but also be creative! Then answer the reflection questions below. 
-
+Remember the NDVI. v. temp plot above? Now it's your turn to explore the data set (`LA_nbhds`) and create your own plots. This is your turn to apply what you have learned and get creative. You can use anything you've learned from 206 so far to explore and summarize the data. Create at least one plot that includes NDVI or temperature on the x-axis, and a socio-economic variable on the y-axis. You can copy and paste the code from above, but also be creative! Then answer the reflection questions below. 
 ```{r socioeconomic}
 ## plot here
 ```
 
 
-16. Based on your plot(s) what relationship exists? Write a short (1-2 paragraph max) reaction/response to your findings, focusing on what they imply for issues related to environmental management, planning, and/or environmental justice. While your response should refer to the specifics of your plots/presentation, you do not need to do an exhaustive analysis or find citations to support your inference.
+25. Based on your plot(s) what relationship exists? Write a short (1-2 paragraph max) reaction/response to your findings, focusing on what they imply for issues related to environmental management, planning, and/or environmental justice. While your response should refer to the specifics of your plots/presentation, you do not need to do an exhaustive analysis or find citations to support your inference.
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-17. For this entire assignment: Share a thought or lesson that clicked for you. What was the most interesting part?
+26. For this entire assignment: Share a thought or lesson that clicked for you. What was the most interesting part?
 
 > Leaving the arrow (>), delete this text and write your answer here

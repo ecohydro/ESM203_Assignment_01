@@ -213,7 +213,7 @@ K_inc = 800 # W/m^2, incoming shortwave radiation
 ```
 
 This chunk runs the model, outputs the steady state temperature, and displays the graph of the sensitivity analysis.
-```{r solve}
+```{r solve, eval=F}
 ## Run the below code to solve for surface temperature
 # temp_s is surface temperature
 range = c(0,100)
@@ -293,7 +293,7 @@ The numerator of the second part, $(e_a - e_{*}[T_s])$ corresponds to the $\Delt
 For this model, we will use the fraction of vegetation cover, called 'veg', to account for changes in the resistance to water vapor transport when vegetation is present. 
 
 In the same way we did a sensitivity analysis for albedo, this chunk does a sensitivity analysis for vegetation. 
-```{r veg_sa}
+```{r veg_sa, eval=F}
 ## Run the below code to solve for surface temperature
 # temp_s is surface temperature
 range = c(0,100)
