@@ -334,15 +334,11 @@ plot_fluxes(veg_cov=1)
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-23. How do you think the relationship between vegetation and surface temperature would change if the vegetation was water-stressed?
+23. We've only simulated the vegetation effects on surface temperature through its impact on the resistance to water transport ($r_W$). What other components of energy balance might the presence or absence of vegetation alter? 
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-24. We've only simulated the vegetation effects on surface temperature through its impact on the resistance to water transport ($r_W$). What other components of energy balance might the presence or absence of vegetation alter? 
-
-> Leaving the arrow (>), delete this text and write your answer here
-
-25. You've now explored the relationship between vegetation and temperature as well as albedo and temperature. If someone were to ask you if a green (vegetated) roof or a white roof were better from an energy balance perspective, how might you use this model to answer that question?
+24. You've now explored the relationship between vegetation and temperature as well as albedo and temperature. If someone were to ask you if a green (vegetated) roof or a white roof were better from an energy balance perspective, how might you use this model to answer that question?
 
 > Leaving the arrow (>), delete this text and write your answer here
 
@@ -355,10 +351,10 @@ Remember the NDVI. v. temp plot above? Now it's your turn to explore the data se
 ```
 
 
-26. Based on your plot(s) what relationship exists? Write a short (1-2 paragraph max) reaction/response to your findings, focusing on what they imply for issues related to environmental management, planning, and/or environmental justice. While your response should refer to the specifics of your plots/presentation, you do not need to do an exhaustive analysis or find citations to support your inference.
+25. Based on your plot(s) what relationship exists? Write a short (1-2 paragraph max) reaction/response to your findings, focusing on what they imply for issues related to environmental management, planning, and/or environmental justice. While your response should refer to the specifics of your plots/presentation, you do not need to do an exhaustive analysis or find citations to support your inference.
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-27. For this entire assignment: Share a thought or lesson that clicked for you. What was the most interesting part?
+26. For this entire assignment: Share a thought or lesson that clicked for you. What was the most interesting part?
 
 > Leaving the arrow (>), delete this text and write your answer here
