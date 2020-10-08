@@ -256,34 +256,39 @@ ggplot(albedo_df) + geom_point(aes(x=alpha, y=test)) +
 
 Now its your turn do a sensitivity analysis based upon the amount of vegetation, but first we dive a little deeper into the latent energy equation. 
 
-Remember that we defined latent energy as:
+Latent energy is a convective flux, which - from lecture - means that its magnitude is proportional to a gradient and inversely proportional to a resistence:
 
 $$\lambda E \propto \frac{\Delta e}{r_W}$$
-##### Answer these questions:
 
-15. Define $\Delta e$
-
-> Leaving the arrow (>), delete this text and write your answer here
-
-16. Define $r_W$
-
-> Leaving the arrow (>), delete this text and write your answer here
-
-17. What happens to $\lambda E$ when $\Delta e$ increases?
-
-> Leaving the arrow (>), delete this text and write your answer here
-
-18. What happens to $\lambda E$ when $r_W$ increases?
-
-> Leaving the arrow (>), delete this text and write your answer here
-
-
-In reality, as we've seen in the reading, this equation is a bit more complicated. For now, dont get too stuck on this. We only include it to elaborate on the actual equations you are using.
+In reality, as we've seen in the reading, this equation is a bit more complicated. For now, dont get too stuck on this; all of the additional terms are related to converting the mass flux of water implied by a vapor gradient into an energy flux. This energy flux is a bit obscure (it's not called "latent" for nothing), but it is the transport of energy away from the surface when there is net evaporation of water at the surface and then subsequent transport of water vapor from the surface to the atmosphere. We only include it to elaborate on the actual equations you are using and to ensure that the equation is dimensionally correct.
 
 $$\lambda E = -\frac{\rho*C_p}{\gamma}*\frac{e_a - e_{*}[T_s]}{r_W}$$
 
-Where $-\frac{\rho*C_p}{\gamma}$ represents the density of water, specific heat capacity, and the psychrometric constant, which depends on the heat capacity, atmospheric pressure, and latent heat of vaporization.
-The second part, $(e_a - e_{*}[T_s])$ is the gradient of vapor pressure between the atmosphere and the surface. The resistance to vapor transfer between the surface and the atmosphere is $r_W$. When this resistance is high, the rate of evaporation is low and when the resistance is low, the rate of evaporation is higher. All other things being equal, the resistance to vapor transport is determined by amount of **vegetated** surface. Of course, $r_W$ can change if vegetation becomes water-limited, or if the atmospheric conditions change. Check out [section 7.2](https://gauchospace.ucsb.edu/courses/pluginfile.php/10694510/mod_resource/content/2/Reading%20for%20Surface%20Energy%20Balance.pdf) to learn more. 
+Where $-\frac{\rho*C_p}{\gamma}$ represents the density of air, $\rho$ (kg/m$^3$), specific heat capacity, $C_p$ (J kg$^{-1}$ $^{\circ}$C$^{-1}$), and the psychrometric constant, $\gamma$ (Pa/$^{\circ}$C). All of these terms are fairly constant, so let's move on to the second group of terms, which vary much more in time and space. 
+
+The numerator of the second part, $(e_a - e_{*}[T_s])$ corresponds to the $\Delta e$ term in the simplified equation above. It represents the gradient between the atmospheric vapor pressure, $e_a$ (Pa), and the surface vapor pressure, $e_{*}[T_s]$ (Pa). This gradient is almost always negative, because moisture in plants and the soil usually keeps the surface vapor pressure higher than the atmosphere. The resistance to vapor transfer between the surface and the atmosphere is $r_W$ (s/m). All things being equal, the resistance to vapor transport, $r_W$, is determined by amount of **vegetation** at the surface. Check out [section 7.2](https://gauchospace.ucsb.edu/courses/pluginfile.php/10694510/mod_resource/content/2/Reading%20for%20Surface%20Energy%20Balance.pdf) to learn more. 
+
+##### Answer these questions:
+
+15. If $r_W$ - the resistence to water vapor transport - is determined by the amount of vegetation, then what time of year might you expect the value of $r_W$ to be largest, and why?
+
+> Leaving the arrow (>), delete this text and write your answer here
+
+16. How might the value of $r_W$ change if vegetation became water stressed, and why?
+
+> Leaving the arrow (>), delete this text and write your answer here
+
+17. Over the course of a day, which value - $e_a$ or $e_{*}[T_s])$ - do you expect to change the most, and why?
+
+> Leaving the arrow (>), delete this text and write your answer here
+
+18. What time of day might you expect the surface water vapor gradient, $(e_a - e_{*}[T_s])$, to be most negative, and why?
+
+> Leaving the arrow (>), delete this text and write your answer here
+
+19. Suppose for a moment that the vapor pressure gradient became positive, which means that the atmospheric vapor pressure, $e_a$ is greater than the surface vapor pressure, $e_{*}[T_s]$. What do you think would happen to the latent energy flux? How might this condition alter the surface energy balance? Can you think of an example when this condition has probably happened or is happening?
+
+> Leaving the arrow (>), delete this text and write your answer here
 
 For this model, we will use the fraction of vegetation cover, called 'veg', to account for changes in the resistance to water vapor transport when vegetation is present. 
 
@@ -317,18 +322,29 @@ plot_fluxes(veg_cov=1)
 
 ##### Answer these questions:
 
-19. How does the presence of vegetation affect the surface temperature? 
+20. How does the presence of vegetation affect the modeled surface temperature? 
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-20. Explain why this relationship occurs. Think back to the equation we had you describe.
+21. Explain why this relationship occurs. Think back to the equation we had you describe.
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-21. Does this relationship explain the initial graph between NDVI and temperature above (in the introduction)? Explain. Include a comment about you initial hypothesis as well.
+22. Does this relationship explain the initial graph between NDVI and temperature above (in the introduction)? Explain. Include a comment about your initial hypothesis as well.
 
 > Leaving the arrow (>), delete this text and write your answer here
 
+23. How do you think the relationship between vegetation and surface temperature would change if the vegetation was water-stressed?
+
+> Leaving the arrow (>), delete this text and write your answer here
+
+24. We've only simulated the vegetation effects on surface temperature through its impact on the resistance to water transport ($r_W$). What other components of energy balance might the presence or absence of vegetation alter? 
+
+> Leaving the arrow (>), delete this text and write your answer here
+
+25. You've now explored the relationship between vegetation and temperature as well as albedo and temperature. If someone were to ask you if a green (vegetated) roof or a white roof were better from an energy balance perspective, how might you use this model to answer that question?
+
+> Leaving the arrow (>), delete this text and write your answer here
 
 
 ### Part IV: Connecting to socioeconomic data 
@@ -339,10 +355,10 @@ Remember the NDVI. v. temp plot above? Now it's your turn to explore the data se
 ```
 
 
-22. Based on your plot(s) what relationship exists? Write a short (1-2 paragraph max) reaction/response to your findings, focusing on what they imply for issues related to environmental management, planning, and/or environmental justice. While your response should refer to the specifics of your plots/presentation, you do not need to do an exhaustive analysis or find citations to support your inference.
+26. Based on your plot(s) what relationship exists? Write a short (1-2 paragraph max) reaction/response to your findings, focusing on what they imply for issues related to environmental management, planning, and/or environmental justice. While your response should refer to the specifics of your plots/presentation, you do not need to do an exhaustive analysis or find citations to support your inference.
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-23. For this entire assignment: Share a thought or lesson that clicked for you. What was the most interesting part?
+27. For this entire assignment: Share a thought or lesson that clicked for you. What was the most interesting part?
 
 > Leaving the arrow (>), delete this text and write your answer here
