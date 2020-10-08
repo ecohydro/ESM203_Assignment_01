@@ -125,7 +125,7 @@ Define each of the terms of the equation and include one sentence of what the fl
 
 > Leaving the arrow (>), delete this text and write your description here
 
-8. $E$
+8. $\lambda E$
 
 > Leaving the arrow (>), delete this text and write your description here
 
@@ -269,11 +269,11 @@ $$\lambda E \propto \frac{\Delta e}{r_W}$$
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-17. What happens to $lambda E$ when $\Delta e$ increases?
+17. What happens to $\lambda E$ when $\Delta e$ increases?
 
 > Leaving the arrow (>), delete this text and write your answer here
 
-18. What happens to $lambda E$ when $r_W$ increases?
+18. What happens to $\lambda E$ when $r_W$ increases?
 
 > Leaving the arrow (>), delete this text and write your answer here
 
