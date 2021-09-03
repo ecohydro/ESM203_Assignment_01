@@ -1,17 +1,17 @@
 What's in this folder? 
 
-Assignment1.html -  the mostly filled out, knitted assignment, contains all the plots but not written answers. 
-Assignment1.Rmd -  the code used to create the above, can use as template for students, they will have to download and save as different name
 
 Assignment1_KEY.html -  the knitted answers from 2020
-Assignment1_KEY.Rmd -  the outlined markdown code for completing the assignment along with answers. These KEYs should be deleted 
+Assignment1_KEY.Rmd -  the outlined markdown code for completing the assignment along with answers
 
 ESM203_F2020_Ass1.csv -  the CSV of the socioeconomic data, gets loaded into R markdown in order to create plots
-
-scatter.jpeg - a photo used as an example in the Assignment1_blank files
 
 The following are needed to load in and plot the spatial data: 
  - ESM203_F2020_Ass1.cpg
  - ESM203_F2020_Ass1.dbf
  - ESM203_F2020_Ass1.shp
  - ESM203_F2020_Ass1.shx
+
+scatter.jpeg - a photo used as an example in the Assignment1_blank files
+neighborhoods.png - photo used in intro 
+seb_whiteboard.jpg - photo of surface energy balance used in the key 
