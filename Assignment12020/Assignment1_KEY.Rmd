@@ -9,8 +9,7 @@ This assignment is going to use the principles of energy balance to examine how 
 
 
 We've assembled a dataset that captures a snapshot of average midday temperatures in August, the amount of vegetation, and a host of social/economic data across each neighborhood in the county of Los Angeles. The temperature data is from the Landsat satellite’s surface thermal data and was acquired in the Spring (April) and Summer (August) of 2020. The vegetation data is characterized by the Normalized Difference Vegetation Index (NDVI), and is taken from similar dates. [NDVI](https://earthobservatory.nasa.gov/features/MeasuringVegetation/measuring_vegetation_2.php) is a measure of “greenness” and higher values of NDVI indicate a greater amount of green vegetation within each neighborhood. The neighborhood information is collated
-from the incredibly awesome Mapping LA project developed by the [LA Times](http://maps.latimes.com/neighborhoods), which is worth checking out. See a description of each column in the dataset at this [link](https://docs.google.com/spreadsheets/d/1Hh-hMt5RuXA3lBYX8G16T3334zXQfbFnJzCxh3qbDsw/edit?usp=sharing). For a visual reference of the LA times project, here is a map of the area of the LA basin and the neighborhoods:
-![](neighborhoods.png){width=75%} 
+from the incredibly awesome Mapping LA project developed by the [LA Times](http://maps.latimes.com/neighborhoods), which is worth checking out. See a description of each column in the dataset at this [link](https://docs.google.com/spreadsheets/d/1Hh-hMt5RuXA3lBYX8G16T3334zXQfbFnJzCxh3qbDsw/edit?usp=sharing). For a visual reference of the LA times project, here is a map of the area of the LA basin and the neighborhoods.
 
 ***Note If the photo above does not show, you need to set your working directory. In the menu at the top, click "Session" -> "Set Working Directory," and navigate to the "Assignment1_forStudents" folder.
 
@@ -18,28 +17,6 @@ from the incredibly awesome Mapping LA project developed by the [LA Times](http:
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(rootSolve)
-library(raster)
-library(rgdal)
-```
-
-
-### Part I: Exploring Los Angeles County Data
-
-In this assignment, we'll be exploring surface temperatures of different neighborhoods in Los Angeles County. To get a better idea of the spatial patterns within the county, check out the plot below. While the data we will use for analysis will be a finer spatial resolution, we include this just to give you a visual.
-
-
-```{r map, echo=F, message = F, warning=F}
-# load shapefile - this contains map of neighborhoods
-# comment this out when giving them the Rmd
-losang <- shapefile("../CPT/data/ESM203_F2020_Ass1.shp")
-
-# view spatially averaged temperature 
-spplot(losang, 'TEMP_SUMME', main="Mean August 2020 Temperature")
-
-# to view the spatial data, uncomment and run the code below. this is optional and if you get errors, just comment out when knitting the file.
-# library(mapview)
-# mapview(losang)
-
 ```
 
 #### Observations 
@@ -53,17 +30,6 @@ LA_nbhds <- read.csv("../CPT/data/ESM203_F2020_Ass1.csv")
 # output column names
 colnames(LA_nbhds)
 ```
-
-These column names tell us which variables are included in the data set.
-
-Lets say you spent the evening playing around with the data looking for trends. Ideally we'd have a hypothesis in mind that we wanted to test, but sometimes in science you get lucky and stumble upon your hypothesis. So you were plotting variables (column names) against each other to see if there were any obvious correlations.
-
-#### What are trends?
-When we're plotting data we're looking for a relationship between two variables. Below are three different correlations we could expect. 
-We have a positive correlation if Y increases with X , we have a negative correlation if Y decreases with X, and a seemingly randomly distribution of points indicates no correlation. At times correlations can be hard to detect so we will add a trend line and use statistics. [Here](https://infogram.com/blog/scatter-plots/) is a short description.
-
-![](scatter.jpeg)  
-
 
 #### Summer NDVI v. surface temperatures
 
@@ -82,17 +48,19 @@ LA_nbhds %>%
 
 ##### Answer these questions:
 
+> 6 points 
+
 1. Describe the relationship between August 2020 Mean Temperature and NDVI
 
-> Leaving the arrow (>), delete this text and write your answer here
+> As NDVI increases, temperature decreases. (2)
 
 2. What might be some possible explanations as to why this relationship exists? There's no right answer here, go wild with it. 
 
-> Leaving the arrow (>), delete this text and write your answer here
+> Higher NDVI indicates vegetation. Vegetation provides cooling through evapotranspiration and shade. (2)
 
 3. Now based upon your explanation form a single statement here, which we will use the model to test. This is your hypothesis. There is no "right answer," so please dont go back and change this.
 
-> Leaving the arrow (>), delete this text and write your answer here
+> Vegetation decreases surface temperatures. (2)
 
 
 ### Part II: Understanding the surface energy balance model
@@ -106,43 +74,47 @@ $$(1 - \alpha)S_{\downarrow} + L_{\downarrow} = L_{\uparrow} + H + \lambda E + G
 
 ##### Answer these questions:
 
+> 10 points 
+
 Define each of the terms of the equation and include one sentence of what the flux is in plain language. If you need a hint, check out the chapter on [Surface Energy Fluxes](https://gauchospace.ucsb.edu/courses/pluginfile.php/10694510/mod_resource/content/2/Reading%20for%20Surface%20Energy%20Balance.pdf).
 
 
 4. $(1 - \alpha)S_{\downarrow}$
 
-> Leaving the arrow (>), delete this text and write your description here
+> Net shortwave radiation is the incoming shortwave radiation, minus what is reflected back to atmosphere, which depends on albedo of the surface. (1)
 
 5. $L_{\downarrow}$
 
-> Leaving the arrow (>), delete this text and write your description here
+> incoming longwave radiation - depends on the temperature and emissivity of the atmosphere, and if there are clouds present. (1)
 
 6. $L_{\uparrow}$
 
-> Leaving the arrow (>), delete this text and write your description here
+> outgoing longwave radiation - depends on the temperature and emissivity of the surface. (1)
 
 7. $H$
 
-> Leaving the arrow (>), delete this text and write your description here
+> sensible heat - depends on temperature gradient between the surface and air. (1)
 
 8. $\lambda E$
 
-> Leaving the arrow (>), delete this text and write your description here
+> latent heat - depends on vapor pressure gradient between the surface and air. (1)
 
 9. $G$ We will be ignoring G for this assignment, but still define it
 
-> Leaving the arrow (>), delete this text and write your description here
+> ground flux - this is the conduction between the surface and deeper layers of the ground, it's a small value compared to others. (1)
 
 10. Now describe the full equation in no more than three sentences
 
-> Leaving the arrow (>), delete this text and write your description here.
+> The surface energy balance combines all the forms of heat transfer at the surface, including radiation, conduction, and convection, and enables us to solve for temperature based on the conditions of the surface and ambient air. (1)
 
 
 11. Draw a conceptual model of the equation from above, showing each of the fluxes going in and out of the surface. If you're unsure what a conceptual model is please reference the slides or google it, and a hint: you've seen the conceptual model you should be drawing before. 
 
-To insert your conceptual model into this document: create a conceptual model by hand or on the computer and then turn it into a .jpg, or any photo file type. Include that photo in the assignment folder, and then use this code as a template to add it to this document: `![Caption](filename_conceptual_model.jpg)`
+To insert your conceptual model into this document: create a conceptual model by hand or on the computer and then turn it into a .jpg, or any photo file type. Include that photo in the assignment folder, and then use this code as a template to add it to this document: 
 
+![an example surface energy balance conceptual figure](seb_whiteboard.jpg)
 
+> figure - 3 points 
 
 ### Part III: Solving for surface temperature 
 
@@ -213,7 +185,7 @@ K_inc = 800 # W/m^2, incoming shortwave radiation
 ```
 
 This chunk runs the model, outputs the steady state temperature, and displays the graph of the sensitivity analysis.
-```{r solve, eval=F}
+```{r solve}
 ## Run the below code to solve for surface temperature
 # temp_s is surface temperature
 range = c(0,100)
@@ -239,17 +211,19 @@ ggplot(albedo_df) + geom_point(aes(x=alpha, y=test)) +
 
 ##### Answer these questions:
 
+> 6 points 
+
 12. What happens to the surface temperature when albedo increases?
 
-> Leaving the arrow (>), delete this text and write your answer here
+> The surface temperature decreases as albedo increases. (2)
 
 13. Think about a roof made of asphalt and a roof that has been painted white. Which would have a higher albedo?
 
-> Leaving the arrow (>), delete this text and write your answer here
+> The white roof would have higher albedo because it's more reflective. (2)
 
 14. Which would have a higher surface temperature?
 
-> Leaving the arrow (>), delete this text and write your answer here
+> The asphalt roof would have a higher surface temperature because it has a lower albedo and will absorb more solar radiation. (2)
 
 
 #### Vegetation
@@ -270,25 +244,27 @@ The numerator of the second part, $(e_a - e_{*}[T_s])$ corresponds to the $\Delt
 
 ##### Answer these questions:
 
+> 10 points
+
 15. If $r_W$ - the resistence to water vapor transport - is determined by the amount of vegetation, then what time of year might you expect the value of $r_W$ to be largest, and why?
 
-> Leaving the arrow (>), delete this text and write your answer here
+> In southern california, I would expect $r_W$ to be the highest in the summer time because there is little water availabile to the vegetation. Could also argue that in northern or eastern states, $r_W$ would be higher in the winter when trees lose their leaves or grasses are dead. (2)
 
 16. How might the value of $r_W$ change if vegetation became water stressed, and why?
 
-> Leaving the arrow (>), delete this text and write your answer here
+> The value of $r_W$ would increase if vegetation is water stressed, because there is more resistance to transporting water vapor when vegetation close their stomata. (2)
 
 17. Over the course of a day, which value - $e_a$ or $e_{*}[T_s])$ - do you expect to change the most, and why?
 
-> Leaving the arrow (>), delete this text and write your answer here
+> $e_*{T_s}$ because it changes with the temperature. (2)
 
 18. What time of day might you expect the surface water vapor gradient, $(e_a - e_{*}[T_s])$, to be most negative, and why?
 
-> Leaving the arrow (>), delete this text and write your answer here
+> The gradient would be the largest at solar noon when the surface vapor pressure is largest. (2)
 
 19. Suppose for a moment that the vapor pressure gradient became positive, which means that the atmospheric vapor pressure, $e_a$ is greater than the surface vapor pressure, $e_{*}[T_s]$. What do you think would happen to the latent energy flux? How might this condition alter the surface energy balance? Can you think of an example when this condition has probably happened or is happening?
 
-> Leaving the arrow (>), delete this text and write your answer here
+> If the atmospheric vapor pressure is greater than the surface, it would cause latent energy flux to change directions, and condensation would occur at the surface. (2)
 
 For this model, we will use the fraction of vegetation cover, called 'veg', to account for changes in the resistance to water vapor transport when vegetation is present. 
 
@@ -318,43 +294,56 @@ We have created a function that lets you plot the different energy fluxes based 
 ```{r plot}
 # plot_fluxes shows a bar plot of the different energy fluxes. Change veg between 0 to 1 to see how the latent and sensible energy change 
 plot_fluxes(veg_cov=1)
+plot_fluxes(veg_cov=0)
+
 ```
 
 ##### Answer these questions:
 
+> 10 points
+
 20. How does the presence of vegetation affect the modeled surface temperature? 
 
-> Leaving the arrow (>), delete this text and write your answer here
+> Vegetation decreases surface temperature in our model. (2)
 
 21. Explain why this relationship occurs. Think back to the equation we had you describe.
 
-> Leaving the arrow (>), delete this text and write your answer here
+> Vegetation increases the evapotranspiration that occurs because leaves hold water, making the surface saturated, and increasing the VPD. More of the energy at the surface goes towards evapotranspiration and latent heat, instead of sensible heat, leading to cooler surface temps. (2)
 
 22. Does this relationship explain the initial graph between NDVI and temperature above (in the introduction)? Explain. Include a comment about your initial hypothesis as well.
 
-> Leaving the arrow (>), delete this text and write your answer here
+> Yes, more vegetation had on average lower summer temperatures. A comment was made about the initial hypothesis. (2)
 
 23. We've only simulated the vegetation effects on surface temperature through its impact on the resistance to water transport ($r_W$). What other components of energy balance might the presence or absence of vegetation alter? 
 
-> Leaving the arrow (>), delete this text and write your answer here
+> Vegetation affects surface characteristics of albedo and emissivity. Trees affect the net radiation because their canopies absorb more radiation through the different layers, provide shade, and block outgoing longwave. Vegetation could affect ground heat flux, but this is relatively small. (2)
 
 24. You've now explored the relationship between vegetation and temperature as well as albedo and temperature. If someone were to ask you if a green (vegetated) roof or a white roof were better from an energy balance perspective, how might you use this model to answer that question?
 
-> Leaving the arrow (>), delete this text and write your answer here
+> We could vary both vegetation and albedo together. With a white roof, there would be higher albedo and less net available energy at the surface, but no vegetation and no latent energy - so all of the outgoing energy would go towards sensible heat. With a vegetated roof, the albedo will be much lower, so more energy is being absorbed. however, the vegetation will increase latent energy and lower temperatures. An arguement could be made for either roof being cooler. (2)
 
 
 ### Part IV: Connecting to socioeconomic data 
 
+> 8 points
+
 Remember the NDVI. v. temp plot above? Now it's your turn to explore the data set (`LA_nbhds`) and create your own plots. This is your turn to apply what you have learned and get creative. You can use anything you've learned from 206 so far to explore and summarize the data. Create at least one plot that includes NDVI or temperature on the x-axis, and a socio-economic variable on the y-axis. You can copy and paste the code from above, but also be creative! Then answer the reflection questions below. 
 ```{r socioeconomic}
-## plot here
+LA_nbhds %>% 
+  dplyr::filter(NDVI_SUMMER > 0 & NDVI_SUMMER < 1) %>% 
+  ggplot() + geom_jitter(aes(x=NDVI_SUMMER, y=WHITE.POPULATION)) + 
+  geom_smooth(aes(x=NDVI_SUMMER, y=WHITE.POPULATION), method=lm) + 
+  labs(x = "August NDVI", y="White Population %") +
+  ggtitle("Mean August 2020 NDVI and White Population of LA County neighborhoods")
+
 ```
 
+> is the plot clearly labelled? Does it contain title on axis and units? (3)
 
 25. Based on your plot(s) what relationship exists? Write a short (1-2 paragraph max) reaction/response to your findings, focusing on what they imply for issues related to environmental management, planning, and/or environmental justice. While your response should refer to the specifics of your plots/presentation, you do not need to do an exhaustive analysis or find citations to support your inference.
 
-> Leaving the arrow (>), delete this text and write your answer here
+> A paragraph here that describes the above plot, relating environmental justice to urban heat islands. (3)
 
 26. For this entire assignment: Share a thought or lesson that clicked for you. What was the most interesting part?
 
-> Leaving the arrow (>), delete this text and write your answer here
+> Thoughts were shared. (2)

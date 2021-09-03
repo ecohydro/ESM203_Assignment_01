@@ -7,10 +7,4 @@ Assignment1_instructions.html - this is the knitted assignment instructions, con
 scatter.jpeg - a photo used as an example in the trend line part 
 neighborhoods.png - a photo used in the intro 
 
-The following are needed to load in and plot the spatial data (optional, not needed to complete the assignment): 
- - ESM203_F2020_Ass1.cpg
- - ESM203_F2020_Ass1.dbf
- - ESM203_F2020_Ass1.shp
- - ESM203_F2020_Ass1.shx
-
-ESM203_F2020_Ass1.csv -  the CSV of the socioeconomic data, gets loaded into R markdown in order to create plots
+ESM203_F2020_Ass1.csv -  the CSV of the neighborhood temperature and socioeconomic data, gets loaded into R markdown in order to create plots

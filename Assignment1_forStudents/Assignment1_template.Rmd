@@ -1,7 +1,7 @@
 ---
 title: "203 Assignment 1"
 subtitle: "Your Name Here"
-output: pdf_document
+output: html_document
 urlcolor: blue
 ---
 
@@ -22,8 +22,6 @@ from the incredibly awesome Mapping LA project developed by the [LA Times](http:
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(rootSolve)
-library(raster)
-library(rgdal)
 ```
 
 
@@ -31,18 +29,6 @@ library(rgdal)
 
 In this assignment, we'll be exploring surface temperatures of different neighborhoods in Los Angeles County. To get a better idea of the spatial patterns within the county, check out the plot below. While the data we will use for analysis will be a finer spatial resolution, we include this just to give you a visual.
 
-
-```{r map, echo=F, message = F, warning=F}
-
-# to view the spatial data, uncomment and run the code below. this is optional and if you get errors, just comment out when knitting the file.
-# losang <- shapefile("ESM203_F2020_Ass1.shp")
-# spplot(losang, 'TEMP_SUMME', main="Mean August 2020 Temperature")
-
-# you can also try copy and pasting the below code to your console once 'losang' is loaded in
-# library(mapview)
-# mapview(losang)
-
-```
 
 #### Observations 
 
@@ -54,6 +40,7 @@ LA_nbhds <- read.csv("ESM203_F2020_Ass1.csv")
 
 # output column names
 colnames(LA_nbhds)
+summary(LA_nbhds)
 ```
 
 These column names tell us which variables are included in the data set.
@@ -308,6 +295,11 @@ test_veg <- function(veg){
 veg <- seq(0,1, by=0.05)
 test <- sapply(X=veg, FUN=test_veg)
 # copy and paste the code from the albedo testing above, then create a plot of veg vs. surface temperature  
+# combine input and output 
+veg_df <- data.frame(veg, test)
+# plot data frame (do this together in discussion)
+ggplot(veg_df) + geom_point(aes(x=veg, y=test)) + 
+  labs(x="vegetation (%)", y="surface temperature (deg C)")
 
 ```
 
