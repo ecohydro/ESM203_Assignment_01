@@ -121,6 +121,7 @@ $(document).ready(function () {
 <p>This assignment is going to use the principles of energy balance to examine how changing properties of urban environments alter the temperature of urban landscapes. In urban areas, the distribution of materials such as asphalt and concrete has been shown to lead to higher air temperatures compared to rural counterparts. This is known as the urban heat island (UHI) effect. High temperatures can be harmful to the health of residents, and in order to mitigate the UHI cities adopt strategies like increasing tree cover to increase shade and cooling, or increasing the reflectivity, also called albedo, with white paint. However, these strategies are not always evenly distributed throughout a city and may create environmental inequity. Read more about this phenomena <a href="https://docs.google.com/document/d/1NUJATMo7KnmC3PpyFRdxo9HWH0F-zQxUDKiIW6pX7pY/edit#heading=h.z1slrwcvefnj">here</a>.</p>
 <p>We’ve assembled a dataset that captures a snapshot of average midday temperatures in August, the amount of vegetation, and a host of social/economic data across each neighborhood in the county of Los Angeles. The temperature data is from the Landsat satellite’s surface thermal data and was acquired in the Spring (April) and Summer (August) of 2020. The vegetation data is characterized by the Normalized Difference Vegetation Index (NDVI), and is taken from similar dates. <a href="https://earthobservatory.nasa.gov/features/MeasuringVegetation/measuring_vegetation_2.php">NDVI</a> is a measure of “greenness” and higher values of NDVI indicate a greater amount of green vegetation within each neighborhood. The neighborhood information is collated from the incredibly awesome Mapping LA project developed by the <a href="http://maps.latimes.com/neighborhoods">LA Times</a>, which is worth checking out. See a description of each column in the dataset at this <a href="https://docs.google.com/spreadsheets/d/1Hh-hMt5RuXA3lBYX8G16T3334zXQfbFnJzCxh3qbDsw/edit?usp=sharing">link</a>.</p>
 <p>For a visual reference of the LA times project, here is a map of the area of the LA basin and the neighborhoods: <img src="images/neighborhoods.png" style="width:75.0%" /></p>
+<p>Go through the tutorial and answer all questions in a seperate document that you will turn in.</p>
 </div>
 <div id="section-part-i-exploring-los-angeles-county-data" class="section level2">
 <h2>Part I: Exploring Los Angeles County data</h2>
@@ -229,7 +230,7 @@ colnames(LA_nbhds)</code></pre>
 </div>
 <div id="section-part-iii-solving-for-surface-temperature" class="section level2">
 <h2>Part III: Solving for surface temperature</h2>
-<p>Given our theoretical understanding of surface energy balance, we can create a model which solves for surface temperature based on available energy. With this model, we can perform sensitivity analyses for different variables that affect temperature. We do this by changing variables to see how the surface temperature being output changes. We will be performing two such sensitivity analyses in this section: one for albedo and one for vegetation. We will do the first together, and you will do the second.</p>
+<p>Given our theoretical understanding of surface energy balance, we can create a model which solves for surface temperature based on available energy. With this model, we can perform sensitivity analyses for different variables that affect temperature. We do this by changing variables to see how the surface temperature being output changes. We will be performing two such sensitivity analyses in this section: one for albedo and one for vegetation.</p>
 <p>The first thing we need to do is define our model. We do so with the code below.</p>
 <pre class="r"><code># define the stefan-boltzmann constant
 sigma = 5.6704*10^-8 #W/m^2/K^4 stefan-boltzmann constant
@@ -259,20 +260,21 @@ seb &lt;- function(x, veg=0, alpha=0.15, eps=0.95, T_a=28, r_H=20, K_inc=800){
   val = - R_av + L_out + H + E
   return(val)
 }</code></pre>
-<div id="section-albedo" class="section level3">
-<h3>Albedo</h3>
+</div>
+<div id="section-part-iiia-albedo" class="section level2">
+<h2>Part IIIa: Albedo</h2>
 <p>We learned in class that albedo affects the amount of shortwave radiation entering the surface by reflecting some back. Albedo affects the available energy at the surface, which we will call <span class="math inline">\(R_{av}\)</span>, through the equations:</p>
 <p><span class="math display">\[S_{net} = S_{\downarrow}*(1-\alpha)\]</span></p>
 <p><span class="math display">\[R_{av} = S_{net} + L_{\downarrow}\]</span></p>
 <p>Where <span class="math inline">\(\alpha\)</span> represents albedo. Use the code below to explore how the model outcomes change when we change albedo, and to answer the questions below.</p>
-<p>Here we define a function <strong>test_albedo</strong> that runs the surface energy balance (<strong>seb</strong>) model, and outputs the steady state temperature for a given albedo.</p>
+<p>Here we define a function <code>test_albedo</code> that runs the surface energy balance (<code>seb</code>) model, and outputs the steady state temperature for a given albedo.</p>
 <pre class="r"><code># temp_s is surface temperature
 range = c(0,100)
 test_albedo &lt;- function(x){
   temp_s = uniroot.all(seb, range, alpha=x)
   return(temp_s)
 }</code></pre>
-Change the x value in the <strong>test_albedo</strong> function to see how surface temperature changes when you change albedo but keep everything else constant.
+Change the x value in the <code>test_albedo</code> function to see how surface temperature changes when you change albedo but keep everything else constant.
 <div class="tutorial-exercise" data-label="solve" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># You can solve for surface temp by inputting specific values of albedo, where x is albedo 
 # Replace x with any value between 0 and 1. 
@@ -311,8 +313,8 @@ ggplot(albedo_df) + geom_point(aes(x=alpha, y=test)) +
 </ol>
 </blockquote>
 </div>
-<div id="section-vegetation" class="section level3">
-<h3>Vegetation</h3>
+<div id="section-part-iiib-vegetation" class="section level2">
+<h2>Part IIIb: Vegetation</h2>
 <p>Now it’s your turn do a sensitivity analysis based upon the amount of vegetation, but first we dive a little deeper into the latent energy equation.</p>
 <p>Latent energy is a convective flux, which - from lecture - means that its magnitude is proportional to a gradient and inversely proportional to a resistance:</p>
 <p><span class="math display">\[\lambda E \propto \frac{\Delta e}{r_W}\]</span></p>
@@ -424,7 +426,6 @@ plot_fluxes(veg_cov=1)</code></pre>
 </ol>
 </blockquote>
 </div>
-</div>
 <div id="section-part-iv-connecting-to-socioeconomic-data" class="section level2">
 <h2>Part IV: Connecting to socioeconomic data</h2>
 Remember the NDVI. v. temp plot above? Run it one more time if you need a refresher:
@@ -437,7 +438,7 @@ Remember the NDVI. v. temp plot above? Run it one more time if you need a refres
   ggtitle(&quot;Mean August 2020 surface temperature and NDVI of LA County&quot;)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":false,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-Now it’s your turn to explore the data set (<code>LA_nbhds</code>) and create your own plots. Remember you can get the list of columns with the code below, and descriptions of the variables can be found <a href="https://docs.google.com/spreadsheets/d/1Hh-hMt5RuXA3lBYX8G16T3334zXQfbFnJzCxh3qbDsw/edit?usp=sharing">here</a>.
+Now it’s your turn to explore the dataset (<code>LA_nbhds</code>) and create your own plots. Remember you can get the list of columns with the code below, and descriptions of the variables can be found <a href="https://docs.google.com/spreadsheets/d/1Hh-hMt5RuXA3lBYX8G16T3334zXQfbFnJzCxh3qbDsw/edit?usp=sharing">here</a>.
 <div class="tutorial-exercise" data-label="cnames" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>colnames(LA_nbhds)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
