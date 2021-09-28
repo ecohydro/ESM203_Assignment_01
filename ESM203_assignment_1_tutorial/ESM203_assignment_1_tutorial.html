@@ -125,7 +125,7 @@ $(document).ready(function () {
 </div>
 <div id="section-part-i-exploring-los-angeles-county-data" class="section level2">
 <h2>Part I: Exploring Los Angeles County data</h2>
-<p>In this assignment, we’ll be exploring surface temperatures of different neighborhoods in Los Angeles County. The first thing we need to do is load in our data, which we do with the following code:</p>
+<p>In this assignment, we’ll be exploring surface temperatures of different neighborhoods in Los Angeles County. The first thing we need to do is load in our data, which we do with the following code. We’ve already run it for you, so don’t worry about running it.</p>
 <pre class="r"><code># load in data as a CSV 
 LA_nbhds &lt;- read.csv(&quot;data/ESM203_F2020_Ass1.csv&quot;)</code></pre>
 <div id="section-observations" class="section level3">
@@ -166,12 +166,12 @@ colnames(LA_nbhds)</code></pre>
 </blockquote>
 <blockquote>
 <ol start="2" style="list-style-type: decimal">
-<li>What might be some possible explanations as to why this relationship exists? There’s no right answer here, go wild with it.</li>
+<li>What might be some possible explanations as to why this relationship exists? Is there something about temperature that affects NDVI or is there something about NDVI that affects temperature? Both? How/why? There could be several plausible explanations, what do you think is most likely?</li>
 </ol>
 </blockquote>
 <blockquote>
 <ol start="3" style="list-style-type: decimal">
-<li>Now, based upon this observed relationship, form a simple causal statement. This is your hypothesis which we will test in this assignment using our theoretical knowledge learned in class. There is no “right answer,” so please don’t go back and change this.</li>
+<li>Now, based upon this observed relationship, form a simple causal statement. What is causing what that underlies the observed relationship? Again, there are several possible answers.</li>
 </ol>
 </blockquote>
 </div>
@@ -185,7 +185,7 @@ colnames(LA_nbhds)</code></pre>
 <h3 id="section-answer-these-questions-1">Answer these questions:</h3>
 </blockquote>
 <blockquote>
-<p>Define each of the terms of the equation and include one sentence of what the flux is in plain language. If you need a hint, check out the chapter on <a href="https://gauchospace.ucsb.edu/courses/pluginfile.php/10694510/mod_resource/content/2/Reading%20for%20Surface%20Energy%20Balance.pdf">Surface Energy Fluxes</a>.</p>
+<p>For each of the equation terms (fluxes) listed below, write one sentence defining them and explaining what they are.</p>
 </blockquote>
 <blockquote>
 <ol start="4" style="list-style-type: decimal">
@@ -231,7 +231,7 @@ colnames(LA_nbhds)</code></pre>
 <div id="section-part-iii-solving-for-surface-temperature" class="section level2">
 <h2>Part III: Solving for surface temperature</h2>
 <p>Given our theoretical understanding of surface energy balance, we can create a model which solves for surface temperature based on available energy. With this model, we can perform sensitivity analyses for different variables that affect temperature. We do this by changing variables to see how the surface temperature being output changes. We will be performing two such sensitivity analyses in this section: one for albedo and one for vegetation.</p>
-<p>The first thing we need to do is define our model. We do so with the code below.</p>
+<p>The first thing we need to do is define our model. We do so with the code below. We’ve already run it for you, so don’t worry about running it.</p>
 <pre class="r"><code># define the stefan-boltzmann constant
 sigma = 5.6704*10^-8 #W/m^2/K^4 stefan-boltzmann constant
 
@@ -327,7 +327,7 @@ ggplot(albedo_df) + geom_point(aes(x=alpha, y=test)) +
 </blockquote>
 <blockquote>
 <ol start="15" style="list-style-type: decimal">
-<li>If <span class="math inline">\(r_W\)</span> - the resistence to water vapor transport - is determined by the amount of vegetation, then what time of year might you expect the value of <span class="math inline">\(r_W\)</span> to be largest, and why?</li>
+<li>If <span class="math inline">\(r_W\)</span> - the resistance to water vapor transport - is determined by the amount of vegetation, then what time of year might you expect the value of <span class="math inline">\(r_W\)</span> to be largest, and why?</li>
 </ol>
 </blockquote>
 <blockquote>
@@ -428,7 +428,16 @@ plot_fluxes(veg_cov=1)</code></pre>
 </div>
 <div id="section-part-iv-connecting-to-socioeconomic-data" class="section level2">
 <h2>Part IV: Connecting to socioeconomic data</h2>
-Remember the NDVI. v. temp plot above? Run it one more time if you need a refresher:
+<p>Watch this video: <img src="https://youtu.be/ZQ6fSHr5TJg" /></p>
+<blockquote>
+<h3 id="section-answer-these-questions-5">Answer these questions:</h3>
+</blockquote>
+<blockquote>
+<ol start="25" style="list-style-type: decimal">
+<li>List at least two ways in which the surface energy balance is different in the two neighborhoods discussed in the video and why that would lead to the observed difference in temperature.</li>
+</ol>
+</blockquote>
+We’re going to look for similar relationships to the ones discussed in the video. As an example of a plot of a relationship, remember the NDVI. v. temp plot above? Run it one more time if you need a refresher:
 <div class="tutorial-exercise" data-label="ndvi_plot_2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>LA_nbhds %&gt;% 
   dplyr::filter(NDVI_SUMMER &gt; 0 &amp; NDVI_SUMMER &lt; 1) %&gt;% 
@@ -449,20 +458,20 @@ This is your turn to apply what you have learned and get creative. You can use a
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <blockquote>
-<h3 id="section-answer-these-questions-5">Answer these questions:</h3>
+<h3 id="section-answer-these-questions-6">Answer these questions:</h3>
 </blockquote>
 <blockquote>
-<ol start="25" style="list-style-type: decimal">
+<ol start="26" style="list-style-type: decimal">
 <li>Take a screenshot of your final plot(s) and include it in your answer document. Make sure to include labels and units!</li>
 </ol>
 </blockquote>
 <blockquote>
-<ol start="26" style="list-style-type: decimal">
+<ol start="27" style="list-style-type: decimal">
 <li>Based on your plot(s) what relationship exists? Write a short (1-2 paragraph max) reaction/response to your findings, focusing on what they imply for issues related to environmental management, planning, and/or environmental justice. While your response should refer to the specifics of your plots/presentation, you do not need to do an exhaustive analysis or find citations to support your inference.</li>
 </ol>
 </blockquote>
 <blockquote>
-<ol start="27" style="list-style-type: decimal">
+<ol start="28" style="list-style-type: decimal">
 <li>For this entire assignment: Share a thought or lesson that clicked for you. What was the most interesting part? 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)

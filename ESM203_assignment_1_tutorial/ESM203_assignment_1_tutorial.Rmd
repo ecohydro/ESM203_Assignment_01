@@ -82,7 +82,7 @@ Go through the tutorial and answer all questions in a seperate document that you
 
 ## Part I: Exploring Los Angeles County data
 
-In this assignment, we'll be exploring surface temperatures of different neighborhoods in Los Angeles County. The first thing we need to do is load in our data, which we do with the following code: 
+In this assignment, we'll be exploring surface temperatures of different neighborhoods in Los Angeles County. The first thing we need to do is load in our data, which we do with the following code. We've already run it for you, so don't worry about running it. 
 
 ```{r data_load, message=F}
 # load in data as a CSV 
@@ -128,9 +128,9 @@ LA_nbhds %>%
 
 > 1. Describe the relationship between August 2020 Mean Temperature and NDVI.
 
-> 2. What might be some possible explanations as to why this relationship exists? There's no right answer here, go wild with it. 
+> 2. What might be some possible explanations as to why this relationship exists? Is there something about temperature that affects NDVI or is there something about NDVI that affects temperature? Both? How/why? There could be several plausible explanations, what do you think is most likely?
 
-> 3. Now, based upon this observed relationship, form a simple causal statement. This is your hypothesis which we will test in this assignment using our theoretical knowledge learned in class. There is no "right answer," so please don't go back and change this.
+> 3. Now, based upon this observed relationship, form a simple causal statement. What is causing what that underlies the observed relationship? Again, there are several possible answers.
 
 
 
@@ -145,7 +145,7 @@ $$(1 - \alpha)S_{\downarrow} + L_{\downarrow} = L_{\uparrow} + H + \lambda E + G
 
 > ### Answer these questions:
 
-> Define each of the terms of the equation and include one sentence of what the flux is in plain language. If you need a hint, check out the chapter on [Surface Energy Fluxes](https://gauchospace.ucsb.edu/courses/pluginfile.php/10694510/mod_resource/content/2/Reading%20for%20Surface%20Energy%20Balance.pdf).
+> For each of the equation terms (fluxes) listed below, write one sentence defining them and explaining what they are.
 
 
 > 4. $(1 - \alpha)S_{\downarrow}$
@@ -170,7 +170,7 @@ $$(1 - \alpha)S_{\downarrow} + L_{\downarrow} = L_{\uparrow} + H + \lambda E + G
 
 Given our theoretical understanding of surface energy balance, we can create a model which solves for surface temperature based on available energy. With this model, we can perform sensitivity analyses for different variables that affect temperature. We do this by changing variables to see how the surface temperature being output changes. We will be performing two such sensitivity analyses in this section: one for albedo and one for vegetation. 
 
-The first thing we need to do is define our model. We do so with the code below. 
+The first thing we need to do is define our model. We do so with the code below. We've already run it for you, so don't worry about running it. 
 ```{r functions}
 # define the stefan-boltzmann constant
 sigma = 5.6704*10^-8 #W/m^2/K^4 stefan-boltzmann constant
@@ -274,7 +274,7 @@ The numerator of the second part, $(e_a - e_{*}[T_s])$ corresponds to the $\Delt
 
 > ### Answer these questions:
 
-> 15. If $r_W$ - the resistence to water vapor transport - is determined by the amount of vegetation, then what time of year might you expect the value of $r_W$ to be largest, and why?
+> 15. If $r_W$ - the resistance to water vapor transport - is determined by the amount of vegetation, then what time of year might you expect the value of $r_W$ to be largest, and why?
 
 > 16. How might the value of $r_W$ change if vegetation became water stressed, and why?
 
@@ -353,7 +353,14 @@ plot_fluxes(veg_cov=1)
 
 ## Part IV: Connecting to socioeconomic data 
 
-Remember the NDVI. v. temp plot above? Run it one more time if you need a refresher: 
+Watch this video:
+![](https://youtu.be/ZQ6fSHr5TJg)
+
+> ### Answer these questions:
+
+> 25. List at least two ways in which the surface energy balance is different in the two neighborhoods discussed in the video and why that would lead to the observed difference in temperature. 
+
+We're going to look for similar relationships to the ones discussed in the video. As an example of a plot of a relationship, remember the NDVI. v. temp plot above? Run it one more time if you need a refresher: 
 ```{r ndvi_plot_2, message=F, exercise = TRUE, exercise.eval = FALSE}
 
 LA_nbhds %>% 
@@ -377,8 +384,8 @@ This is your turn to apply what you have learned and get creative. You can use a
 
 > ### Answer these questions:
 
-> 25. Take a screenshot of your final plot(s) and include it in your answer document. Make sure to include labels and units!
+> 26. Take a screenshot of your final plot(s) and include it in your answer document. Make sure to include labels and units!
 
-> 26. Based on your plot(s) what relationship exists? Write a short (1-2 paragraph max) reaction/response to your findings, focusing on what they imply for issues related to environmental management, planning, and/or environmental justice. While your response should refer to the specifics of your plots/presentation, you do not need to do an exhaustive analysis or find citations to support your inference.
+> 27. Based on your plot(s) what relationship exists? Write a short (1-2 paragraph max) reaction/response to your findings, focusing on what they imply for issues related to environmental management, planning, and/or environmental justice. While your response should refer to the specifics of your plots/presentation, you do not need to do an exhaustive analysis or find citations to support your inference.
 
-> 27. For this entire assignment: Share a thought or lesson that clicked for you. What was the most interesting part?
+> 28. For this entire assignment: Share a thought or lesson that clicked for you. What was the most interesting part?
